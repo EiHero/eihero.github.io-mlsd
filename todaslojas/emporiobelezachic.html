@@ -8,38 +8,34 @@
 <body>
     <h1>Imagens do Empório Beleza Chic</h1>
 
-    <!-- Adicione os nomes das imagens manualmente -->
-    <img src="todaslojas/emporiobelezachic/imagem1.jpg" alt="Imagem 1">
-    <img src="todaslojas/emporiobelezachic/imagem2.jpg" alt="Imagem 2">
+    <!-- Corrigindo os caminhos das imagens -->
+    <img src="eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem1.jpg" alt="Imagem 1">
+    <img src="eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem2.jpg" alt="Imagem 2">
     <!-- ... adicione mais imagens aqui ... -->
 
-    <!-- Você pode repetir o padrão para todas as imagens que deseja exibir -->
-
+    <!-- Script de verificação de caminhos -->
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Array com os caminhos das imagens
-        var paths = [
-            'todaslojas/emporiobelezachic/imagem1.jpg',
-            'todaslojas/emporiobelezachic/imagem2.jpg',
-            // Adicione mais caminhos conforme necessário
-        ];
+        document.addEventListener('DOMContentLoaded', function () {
+            var paths = [
+                'eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem1.jpg',
+                'eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem2.jpg',
+                // Adicione mais caminhos conforme necessário
+            ];
 
-        // Verifica cada caminho
-        paths.forEach(function (path) {
-            var img = new Image();
-            img.src = path;
+            paths.forEach(function (path) {
+                var img = new Image();
+                img.src = path;
 
-            img.onload = function () {
-                console.log('Caminho correto:', path);
-            };
+                img.onload = function () {
+                    console.log('Caminho correto:', path);
+                };
 
-            img.onerror = function () {
-                console.error('Caminho incorreto ou imagem não encontrada:', path);
-            };
+                img.onerror = function () {
+                    console.error('Caminho incorreto ou imagem não encontrada:', path);
+                };
+            });
         });
-    });
-</script>
-
+    </script>
 
 </body>
 </html>
