@@ -8,30 +8,12 @@
 <body>
     <h1>Imagens do Empório Beleza Chic</h1>
 
-    <!-- Vamos buscar todas as imagens na pasta "todaslojas/emporiobelezachic" -->
-    <div id="gallery"></div>
+    <!-- Adicione os nomes das imagens manualmente -->
+    <img src="todaslojas/emporiobelezachic/imagem1.jpg" alt="Imagem 1">
+    <img src="todaslojas/emporiobelezachic/imagem2.jpg" alt="Imagem 2">
+    <!-- ... adicione mais imagens aqui ... -->
 
-    <script>
-        // Diretório onde estão as imagens
-        const dir = 'todaslojas/emporiobelezachic';
+    <!-- Você pode repetir o padrão para todas as imagens que deseja exibir -->
 
-        // Função para carregar as imagens
-        function loadImages() {
-            const gallery = document.getElementById('gallery');
-
-            // Suponhamos que você tenha 5 imagens (1.jpg, 2.jpg, 3.jpg, etc.)
-            const numImages = 5;
-
-            for (let i = 1; i <= numImages; i++) {
-                const imgSrc = `${dir}/imagem${i}.jpg`;
-                const imgElement = document.createElement('img');
-                imgElement.src = imgSrc;
-                gallery.appendChild(imgElement);
-            }
-        }
-
-        // Carrega as imagens quando a página estiver pronta
-        window.onload = loadImages;
-    </script>
 </body>
 </html>
