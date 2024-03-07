@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Slideshow de Imagens</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .slideshow {
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slideshow img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow" id="slideshow">
+    <!-- As imagens serão adicionadas dinamicamente aqui -->
+</div>
+
+<script>
+    const slideshowContainer = document.getElementById('slideshow');
+    const imageFolder = 'ff'; // Nome da pasta onde estão as imagens
+
+    // Lista de nomes de arquivo das imagens (substitua com os nomes reais das suas imagens)
+    const imageNames = ['imagem1.jpg', 'imagem2.jpg', 'imagem3.jpg'];
+
+    // Cria elementos de imagem dinamicamente e adiciona ao slideshowContainer
+    imageNames.forEach(imageName => {
+        const imgElement = document.createElement('img');
+        imgElement.src = `./${imageFolder}/${imageName}`;
+        slideshowContainer.appendChild(imgElement);
+    });
+
+    let currentIndex = 0;
+
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % imageNames.length;
+        updateSlideshow();
+    }
+
+    function showPreviousImage() {
+        currentIndex = (currentIndex - 1 + imageNames.length) % imageNames.length;
+        updateSlideshow();
+    }
+
+    function updateSlideshow() {
+        const images = document.querySelectorAll('.slideshow img');
+        images.forEach((img, index) => {
+            img.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+    }
+
+    setInterval(showNextImage, 3000); // Alterna para a próxima imagem a cada 3 segundos
+</script>
+
+</body>
+</html>
