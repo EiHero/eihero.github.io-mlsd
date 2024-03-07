@@ -5,15 +5,15 @@
     <title>Lojas e Produtos</title>
     <style>
         :root {
-            --main-bg-color: #ffffff; /* Cor de fundo padrão branca. Você pode alterar essa cor para o valor RGB desejado. */
-            --main-text-color: #000000; /* Cor de texto padrão preta. Você pode alterar essa cor para o valor RGB desejado. */
+            --main-bg-color: #ffffff; 
+            --main-text-color: #000000; 
         }
         body {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: var(--main-bg-color); /* Usando a variável de cor de fundo aqui. */
-            color: var(--main-text-color); /* Usando a variável de cor de texto aqui. */
+            background-color: var(--main-bg-color); 
+            color: var(--main-text-color); 
         }
         .container {
             display: flex;
@@ -35,7 +35,6 @@
             top: 10px;
             right: 10px;
         }
-        /* Estilos para o carrossel de imagens */
         .carousel {
             display: flex;
             overflow-x: auto;
@@ -52,42 +51,36 @@
 </head>
 <body>
 
-<!-- Carrossel de imagens -->
 <div class="carousel" id="carousel">
-    <img src="\slides\imagem1.png" alt="Slide 1">
-    <img src="\slides\imagem2.png" alt="Slide 2">
-    <img src="\slides\imagem3.png" alt="Slide 3">
-    <!-- Adicione mais imagens conforme necessário -->
+    <img src="/meuProjeto/slides/imagem1.png" alt="Slide 1">
+    <img src="/meuProjeto/slides/imagem2.png" alt="Slide 2">
+    <img src="/meuProjeto/slides/imagem3.png" alt="Slide 3">
 </div>
 
 <div class="container">
-    <!-- Exemplo de 3 logos de loja por fileira -->
     <div class="item" onclick="openHtml('emporiobelezachic')">
-        <img src="\logos\emporiobelezachic.gif" alt="emporiobelezachic">
+        <img src="/meuProjeto/logos/emporiobelezachic.gif" alt="emporiobelezachic">
         <p>emporiobelezachic</p>
     </div>
     <div class="item" onclick="openHtml('cdm')">
-        <img src="\logos\cdm.png" alt="cdm">
+        <img src="/meuProjeto/logos/cdm.png" alt="cdm">
         <p>cdm2</p>
     </div>
     <div class="item" onclick="openHtml('evc')">
-        <img src="\logos\evc.png" alt="evc">
+        <img src="/meuProjeto/logos/evc.png" alt="evc">
         <p>evc</p>
     </div>
-  <div class="item" onclick="openHtml('pepearcondicionado')">
-      <img src="\logos\pepearcondicionado.png" alt="pepearcondicionado">
-      <p>pepearcondicionado</p>
-  </div>
-
-    <!-- Repita o bloco acima para cada conjunto de 3 logos de loja -->
-
+    <div class="item" onclick="openHtml('pepearcondicionado')">
+        <img src="/meuProjeto/logos/pepearcondicionado.png" alt="pepearcondicionado">
+        <p>pepearcondicionado</p>
+    </div>
 </div>
 
 <button class="dark-mode" onclick="toggleDarkMode()">Modo Escuro</button>
 
 <script>
     function openHtml(productName) {
-        window.open(productName + '.html', '_blank');
+        window.open('/meuProjeto/' + productName + '.html', '_blank');
     }
 
     function toggleDarkMode() {
@@ -104,7 +97,6 @@
         }
     }
 
-    // Código para o carrossel automático
     let counter = 0;
     let images = document.querySelectorAll('.carousel img');
     setInterval(function() {
@@ -114,7 +106,7 @@
         }
         let carousel = document.getElementById('carousel');
         carousel.scrollLeft = images[counter].offsetLeft;
-    }, 3000); // Muda a imagem a cada 3 segundos
+    }, 3000); 
 </script>
 
 </body>
