@@ -26,9 +26,12 @@
                     const imagens = doc.querySelectorAll("a");
 
                     imagens.forEach(imagem => {
-                        const img = document.createElement("img");
-                        img.src = `${diretorioImagens}/${imagem.textContent}`;
-                        container.appendChild(img);
+                        // Verifica se o item é um arquivo de imagem
+                        if (imagem.textContent.match(/\.(jpeg|jpg|gif|png)$/)) {
+                            const img = document.createElement("img");
+                            img.src = `${diretorioImagens}/${imagem.textContent}`;
+                            container.appendChild(img);
+                        }
                     });
                 });
         }
