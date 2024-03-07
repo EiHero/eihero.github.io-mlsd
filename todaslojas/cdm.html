@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lojas e Produtos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Adiciona a imagem de fundo */
+            background-image: url('/fundos/fundo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .item {
+            flex-basis: 45%;
+            margin: 10px;
+            text-align: center;
+        }
+        .item img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="imageContainer">
+    <!-- As imagens serão adicionadas dinamicamente aqui com JavaScript -->
+</div>
+
+<script>
+    function openHtml(productName) {
+        window.open('\logos\\' + productName + '.html', '_blank');
+    }
+
+    // Obtém a referência ao contêiner de imagens
+    const imageContainer = document.getElementById('imageContainer');
+
+    // Array com os nomes dos produtos e formato de imagem
+  const productNames = ['ss', '1', 'ss'];
+  const imageFormat = 'png'; // ou 'jpg', 'jpeg', 'gif', etc.
+
+    // Adiciona as imagens dinamicamente ao contêiner
+    productNames.forEach(productName => {
+        const imagePath = `\\lojas\\emporiobelezachic\\${productName}.${imageFormat}`;
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
+        itemDiv.innerHTML = `
+            <img src="${imagePath}" alt="${productName}">
+            <p>${productName}</p>
+        `;
+        itemDiv.onclick = () => openHtml(productName);
+        imageContainer.appendChild(itemDiv);
+    });
+</script>
+
+</body>
+</html>
