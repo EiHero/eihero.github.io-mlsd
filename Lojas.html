@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout Ajustado para Dispositivos Móveis</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to right, #ffdf00, #002776);
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .search {
+      position: relative;
+      padding: 10px;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+    }
+
+    .search i {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      color: white;
+    }
+
+    .slideshow {
+      height: 50vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .slideshow img {
+      max-width: 90%;
+      height: auto;
+      object-fit: cover;
+      margin: auto;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column; /* Organiza os botões em coluna */
+      align-items: center; /* Centraliza os botões horizontalmente */
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%; /* Garante que a linha ocupe a largura total */
+    }
+
+    .button {
+      width: 28%;
+      height: auto;
+      border: none;
+      border-radius: 500px;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+    }
+
+    .button img {
+      max-width: 140%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="search">
+  <input type="text" placeholder="Busca">
+  <i class="fa fa-search"></i>
+</div>
+
+  <div class="slideshow">
+    <img src="promo/promo1.jpg" alt="promo1">
+    <video controls>
+      <source src="promo/video1.mp4" type="video/mp4">
+      Seu navegador não suporta o elemento de vídeo.
+    </video>
+    <img src="promo/promo2.jpg" alt="promo2">
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slideshow img, .slideshow video');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 30000);
+  </script>
+
+<div class="buttons-container">
+  <div class="buttons">
+    <button class="button" onclick="openFile('food.html')">
+      <img src="ícones/comida.png" alt="Food">
+    </button>
+    <button class="button" onclick="openFile('lojas.html')">
+      <img src="ícones/lojas.png" alt="Lojas">
+    </button>
+    <button class="button" onclick="openFile('taxi.html')">
+      <img src="ícones/roupa.png" alt="Taxi">
+    </button>
+  </div>
+  <div class="buttons">
+    <!-- Novos botões aqui -->
+    <button class="button" onclick="openFile('new1.html')">
+      <img src="ícones/contrate.png" alt="New1">
+    </button>
+    <button class="button" onclick="openFile('new2.html')">
+      <img src="ícones/farmacia.png" alt="New2">
+    </button>
+    <button class="button" onclick="openFile('new3.html')">
+      <img src="ícones/moto.png" alt="New3">
+    </button>
+  </div>
+</div>
+
+</body>
+</html>
