@@ -2,65 +2,40 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lojas e Produtos</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* Adiciona a imagem de fundo */
-            background-image: url('/fundos/fundo.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .item {
-            flex-basis: 45%;
-            margin: 10px;
-            text-align: center;
-        }
-        .item img {
-            width: 100%;
-            height: auto;
-            cursor: pointer;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Imagens</title>
 </head>
 <body>
+    <h1>Imagens do Empório Beleza Chic</h1>
 
-<div class="container" id="imageContainer">
-    <!-- As imagens serão adicionadas dinamicamente aqui com JavaScript -->
-</div>
+    <!-- Corrigindo os caminhos das imagens -->
+    <img src="eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem1.jpg" alt="Imagem 1">
+    <img src="eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem2.jpg" alt="Imagem 2">
+    <!-- ... adicione mais imagens aqui ... -->
 
-<script>
-    function openHtml(productName) {
-        window.open('\logos\\' + productName + '.html', '_blank');
-    }
+    <!-- Script de verificação de caminhos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var paths = [
+                'eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem1.jpg',
+                'eihero.github.io-mlsd/todaslojas/emporiobelezachic/imagem2.jpg',
+                // Adicione mais caminhos conforme necessário
+            ];
 
-    // Obtém a referência ao contêiner de imagens
-    const imageContainer = document.getElementById('imageContainer');
+            paths.forEach(function (path) {
+                var img = new Image();
+                img.src = path;
 
-    // Array com os nomes dos produtos e formato de imagem
-    const productNames = [imagem1', '1', 'ss'];
-    const imageFormat = 'png'; // ou 'jpg', 'jpeg', 'gif', etc.
+                img.onload = function () {
+                    console.log('Caminho correto:', path);
+                };
 
-    // Adiciona as imagens dinamicamente ao contêiner
-    productNames.forEach(productName => {
-        const imagePath = `./lojas/emporiobelezachic/${productName}.${imageFormat}`;
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('item');
-        itemDiv.innerHTML = `
-            <img src="${imagePath}" alt="${productName}">
-            <p>${productName}</p>
-        `;
-        itemDiv.onclick = () => openHtml(productName);
-        imageContainer.appendChild(itemDiv);
-    });
-</script>
+                img.onerror = function () {
+                    console.error('Caminho incorreto ou imagem não encontrada:', path);
+                };
+            });
+        });
+    </script>
 
 </body>
 </html>
