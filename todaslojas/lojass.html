@@ -52,9 +52,28 @@
 <body>
 
 <div class="carousel" id="carousel">
+    <img src="slides/imagem1.png" alt="Slide 1">
+    <img src="slides/imagem2.png" alt="Slide 2">
+    <img src="slides/imagem3.png" alt="Slide 3">
 </div>
 
-<div class="container" id="lojasContainer">
+<div class="container">
+    <div class="item" onclick="openHtml('emporiobelezachic')">
+        <img src="logos/emporiobelezachic.gif" alt="emporiobelezachic">
+        <p>emporiobelezachic</p>
+    </div>
+    <div class="item" onclick="openHtml('cdm')">
+        <img src="logos/cdm.png" alt="cdm">
+        <p>cdm2</p>
+    </div>
+    <div class="item" onclick="openHtml('evc')">
+        <img src="logos/evc.png" alt="evc">
+        <p>evc</p>
+    </div>
+    <div class="item" onclick="openHtml('pepearcondicionado')">
+        <img src="logos/pepearcondicionado.png" alt="pepearcondicionado">
+        <p>pepearcondicionado</p>
+    </div>
 </div>
 
 <button class="dark-mode" onclick="toggleDarkMode()">Modo Escuro</button>
@@ -87,47 +106,7 @@
         }
         let carousel = document.getElementById('carousel');
         carousel.scrollLeft = images[counter].offsetLeft;
-    }, 3000);
-
-    // Função para carregar as imagens e lojas a partir do arquivo JSON
-    async function carregarDados() {
-        // Carregar imagens
-        const imagensResponse = await fetch('./slides/imagens.json');
-        const imagensData = await imagensResponse.json();
-        const carousel = document.getElementById('carousel');
-
-        imagensData.imagens.forEach(nomeImagem => {
-            const img = document.createElement('img');
-            img.src = `./slides/${nomeImagem}`;
-            img.alt = `Slide ${nomeImagem.split('.')[0]}`;
-            carousel.appendChild(img);
-        });
-
-        // Carregar lojas
-        const lojasResponse = await fetch('./lojas/emporiobelezachic/imagens.json');
-        const lojasData = await lojasResponse.json();
-        const lojasContainer = document.getElementById('lojasContainer');
-
-        lojasData.imagens.forEach(nomeImagem => {
-            const divItem = document.createElement('div');
-            divItem.className = 'item';
-            divItem.onclick = () => openHtml(nomeImagem.split('.')[0]);
-            
-            const imgItem = document.createElement('img');
-            imgItem.src = `./lojas/emporiobelezachic/logos/${nomeImagem}`;
-            imgItem.alt = nomeImagem.split('.')[0];
-
-            const pItem = document.createElement('p');
-            pItem.textContent = nomeImagem.split('.')[0];
-
-            divItem.appendChild(imgItem);
-            divItem.appendChild(pItem);
-            lojasContainer.appendChild(divItem);
-        });
-    }
-
-    // Carregar os dados ao carregar a página
-    window.onload = carregarDados;
+    }, 3000); 
 </script>
 
 </body>
