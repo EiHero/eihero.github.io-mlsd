@@ -7,22 +7,29 @@
 </head>
 <body>
     <h1>Empório Beleza Chic</h1>
-    <div id="imageContainer">
-        <?php
-            // Diretório onde estão as imagens
-            $diretorioImagens = "emporiorbelezachic";
+    <div id="imageContainer"></div>
 
-            // Obtendo a lista de arquivos no diretório
-            $arquivos = glob("$diretorioImagens/*.{jpeg,jpg,gif,png}", GLOB_BRACE);
+    <script>
+        // Diretório onde estão as imagens
+        const diretorioImagens = "emporiorbelezachic";
 
-            if (count($arquivos) === 0) {
-                echo "<p>Nenhuma imagem encontrada no diretório.</p>";
-            } else {
-                foreach ($arquivos as $imagem) {
-                    echo '<img src="' . $imagem . '" alt="Imagem">';
-                }
-            }
-        ?>
-    </div>
+        // Função para carregar as imagens
+        function carregarImagens() {
+            const container = document.getElementById("imageContainer");
+
+            // Lista de nomes de imagens (pode ser alterada conforme necessário)
+            const imagens = ["imagem1.jpg", "imagem2.png", "imagem3.gif"];
+
+            imagens.forEach(nomeImagem => {
+                const img = document.createElement("img");
+                img.src = `${diretorioImagens}/${nomeImagem}`;
+                img.alt = "Imagem";
+                container.appendChild(img);
+            });
+        }
+
+        // Carregar as imagens ao carregar a página
+        window.onload = carregarImagens;
+    </script>
 </body>
 </html>
