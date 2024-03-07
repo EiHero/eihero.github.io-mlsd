@@ -3,43 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empório Beleza Chic</title>
+    <title>Minhas Imagens</title>
 </head>
 <body>
-    <h1>Empório Beleza Chic</h1>
-    <div id="imageContainer"></div>
+    <h1>Imagens do Empório Beleza Chic</h1>
+
+    <!-- Vamos buscar todas as imagens na pasta "todaslojas/emporiobelezachic" -->
+    <div id="gallery"></div>
 
     <script>
         // Diretório onde estão as imagens
-        const diretorioImagens = "lojas/emporiobelezachic";
-
-        // Lista de imagens
-        const imagens = [
-            "imagem1.jpg",
-            "imagem2.png",
-            "imagem3.gif"
-            // Adicione mais imagens conforme necessário
-        ];
+        const dir = 'todaslojas/emporiobelezachic';
 
         // Função para carregar as imagens
-        function carregarImagens() {
-            const container = document.getElementById("imageContainer");
+        function loadImages() {
+            const gallery = document.getElementById('gallery');
 
-            // Verifica se há imagens na lista
-            if (imagens.length > 0) {
-                imagens.forEach(nomeImagem => {
-                    const img = document.createElement("img");
-                    img.src = `${diretorioImagens}/${nomeImagem}`;
-                    img.alt = "Imagem";
-                    container.appendChild(img);
-                });
-            } else {
-                console.error('A lista de imagens está vazia.');
+            // Suponhamos que você tenha 5 imagens (1.jpg, 2.jpg, 3.jpg, etc.)
+            const numImages = 5;
+
+            for (let i = 1; i <= numImages; i++) {
+                const imgSrc = `${dir}/imagem${i}.jpg`;
+                const imgElement = document.createElement('img');
+                imgElement.src = imgSrc;
+                gallery.appendChild(imgElement);
             }
         }
 
-        // Carregar as imagens ao carregar a página
-        window.onload = carregarImagens;
+        // Carrega as imagens quando a página estiver pronta
+        window.onload = loadImages;
     </script>
 </body>
 </html>
