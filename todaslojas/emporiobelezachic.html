@@ -21,12 +21,16 @@
             fetch(`./${diretorioImagens}/imagens.json`)
                 .then(response => response.json())
                 .then(data => {
-                    data.imagens.forEach(nomeImagem => {
-                        const img = document.createElement("img");
-                        img.src = `${diretorioImagens}/${nomeImagem}`;
-                        img.alt = "Imagem";
-                        container.appendChild(img);
-                    });
+                    if (data.imagens && data.imagens.length > 0) {
+                        data.imagens.forEach(nomeImagem => {
+                            const img = document.createElement("img");
+                            img.src = `${diretorioImagens}/${nomeImagem}`;
+                            img.alt = "Imagem";
+                            container.appendChild(img);
+                        });
+                    } else {
+                        console.error('O arquivo imagens.json está vazio ou mal formatado.');
+                    }
                 })
                 .catch(error => console.error('Erro ao carregar imagens:', error));
         }
