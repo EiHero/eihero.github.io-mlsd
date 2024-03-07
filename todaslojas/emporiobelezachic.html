@@ -3,39 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas Imagens</title>
+    <title>Empório Beleza Chic</title>
 </head>
 <body>
-    <h1>Imagens do Empório Beleza Chic</h1>
+    <h1>Empório Beleza Chic</h1>
+    <div id="imageContainer"></div>
 
-    <!-- Adicione os nomes das imagens manualmente -->
-    <img src="lojas/emporiobelezachic/imagem1.jpg" alt="Imagem 1">
-    <img src="lojas/emporiobelezachic/imagem2.jpg" alt="Imagem 2">
-    <!-- ... adicione mais imagens aqui ... -->
-
-    <!-- Script de verificação de caminhos -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var paths = [
-                'lojas/emporiobelezachic/imagem1.jpg',
-                'lojas/emporiobelezachic/imagem2.jpg',
-                // Adicione mais caminhos conforme necessário
-            ];
+        // Diretório onde estão as imagens
+        const diretorioImagens = "lojas/emporiobelezachic";
 
-            paths.forEach(function (path) {
-                var img = new Image();
-                img.src = path;
+        // Função para carregar as imagens
+        function carregarImagens() {
+            const container = document.getElementById("imageContainer");
 
-                img.onload = function () {
-                    console.log('Caminho correto:', path);
-                };
+            // Obtendo a lista de imagens a partir do arquivo JSON
+            fetch(`./${diretorioImagens}/imagens.json`)
+                .then(response => response.json())
+                .then(data => {
+                    data.imagens.forEach(nomeImagem => {
+                        const img = document.createElement("img");
+                        img.src = `${diretorioImagens}/${nomeImagem}`;
+                        img.alt = "Imagem";
+                        container.appendChild(img);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar imagens:', error));
+        }
 
-                img.onerror = function () {
-                    console.error('Caminho incorreto ou imagem não encontrada:', path);
-                };
-            });
-        });
+        // Carregar as imagens ao carregar a página
+        window.onload = carregarImagens;
     </script>
-
 </body>
 </html>
