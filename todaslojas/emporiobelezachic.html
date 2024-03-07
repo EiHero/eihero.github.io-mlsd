@@ -13,30 +13,28 @@
         // Diretório onde estão as imagens
         const diretorioImagens = "lojas/emporiobelezachic";
 
-        // Conteúdo do arquivo imagens.json (substitua com o conteúdo real)
-        const dadosJson = {
-            "imagens": [
-                "imagem1.jpg",
-                "imagem1.png",
-                "imagem1.gif"
-                // Adicione mais imagens conforme necessário
-            ]
-        };
+        // Lista de imagens
+        const imagens = [
+            "imagem1.jpg",
+            "imagem2.png",
+            "imagem3.gif"
+            // Adicione mais imagens conforme necessário
+        ];
 
         // Função para carregar as imagens
         function carregarImagens() {
             const container = document.getElementById("imageContainer");
 
-            // Obtendo a lista de imagens diretamente do conteúdo JSON
-            if (dadosJson.imagens && dadosJson.imagens.length > 0) {
-                dadosJson.imagens.forEach(nomeImagem => {
+            // Verifica se há imagens na lista
+            if (imagens.length > 0) {
+                imagens.forEach(nomeImagem => {
                     const img = document.createElement("img");
                     img.src = `${diretorioImagens}/${nomeImagem}`;
                     img.alt = "Imagem";
                     container.appendChild(img);
                 });
             } else {
-                console.error('O conteúdo do arquivo imagens.json está vazio ou mal formatado.');
+                console.error('A lista de imagens está vazia.');
             }
         }
 
