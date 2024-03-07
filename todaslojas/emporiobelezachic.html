@@ -2,37 +2,65 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empório Beleza Chic</title>
+    <title>Lojas e Produtos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Adiciona a imagem de fundo */
+            background-image: url('/fundos/fundo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .item {
+            flex-basis: 45%;
+            margin: 10px;
+            text-align: center;
+        }
+        .item img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Empório Beleza Chic</h1>
-    <div id="imageContainer"></div>
 
-    <script>
-        // Diretório onde estão as imagens
-        const diretorioImagens = "lojas/emporiobelezachic";
+<div class="container" id="imageContainer">
+    <!-- As imagens serão adicionadas dinamicamente aqui com JavaScript -->
+</div>
 
-        // Função para carregar as imagens
-        function carregarImagens() {
-            const container = document.getElementById("imageContainer");
+<script>
+    function openHtml(productName) {
+        window.open('\logos\\' + productName + '.html', '_blank');
+    }
 
-            // Obtendo a lista de imagens a partir do arquivo JSON
-            fetch(`./${diretorioImagens}/imagens.json`)
-                .then(response => response.json())
-                .then(data => {
-                    data.imagens.forEach(nomeImagem => {
-                        const img = document.createElement("img");
-                        img.src = `${diretorioImagens}/${nomeImagem}`;
-                        img.alt = "Imagem";
-                        container.appendChild(img);
-                    });
-                })
-                .catch(error => console.error('Erro ao carregar imagens:', error));
-        }
+    // Obtém a referência ao contêiner de imagens
+    const imageContainer = document.getElementById('imageContainer');
 
-        // Carregar as imagens ao carregar a página
-        window.onload = carregarImagens;
-    </script>
+    // Array com os nomes dos produtos e formato de imagem
+    const productNames = ['ss', '1', 'ss'];
+    const imageFormat = 'png'; // ou 'jpg', 'jpeg', 'gif', etc.
+
+    // Adiciona as imagens dinamicamente ao contêiner
+    productNames.forEach(productName => {
+        const imagePath = `./lojas/emporiobelezachic/${productName}.${imageFormat}`;
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
+        itemDiv.innerHTML = `
+            <img src="${imagePath}" alt="${productName}">
+            <p>${productName}</p>
+        `;
+        itemDiv.onclick = () => openHtml(productName);
+        imageContainer.appendChild(itemDiv);
+    });
+</script>
+
 </body>
 </html>
