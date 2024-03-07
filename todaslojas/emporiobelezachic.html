@@ -17,15 +17,18 @@
         function carregarImagens() {
             const container = document.getElementById("imageContainer");
 
-            // Lista de nomes de imagens (pode ser alterada conforme necessário)
-            const imagens = ["imagem1.jpg", "imagem2.png", "imagem3.gif"];
-
-            imagens.forEach(nomeImagem => {
-                const img = document.createElement("img");
-                img.src = `${diretorioImagens}/${nomeImagem}`;
-                img.alt = "Imagem";
-                container.appendChild(img);
-            });
+            // Obtendo a lista de imagens a partir do arquivo JSON
+            fetch(`./${diretorioImagens}/imagens.json`)
+                .then(response => response.json())
+                .then(data => {
+                    data.imagens.forEach(nomeImagem => {
+                        const img = document.createElement("img");
+                        img.src = `${diretorioImagens}/${nomeImagem}`;
+                        img.alt = "Imagem";
+                        container.appendChild(img);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar imagens:', error));
         }
 
         // Carregar as imagens ao carregar a página
