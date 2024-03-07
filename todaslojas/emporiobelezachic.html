@@ -13,26 +13,31 @@
         // Diretório onde estão as imagens
         const diretorioImagens = "lojas/emporiobelezachic";
 
+        // Conteúdo do arquivo imagens.json (substitua com o conteúdo real)
+        const dadosJson = {
+            "imagens": [
+                "imagem1.jpg",
+                "imagem2.png",
+                "imagem3.gif"
+                // Adicione mais imagens conforme necessário
+            ]
+        };
+
         // Função para carregar as imagens
         function carregarImagens() {
             const container = document.getElementById("imageContainer");
 
-            // Obtendo a lista de imagens a partir do arquivo JSON
-            fetch(`./${diretorioImagens}/imagens.json`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.imagens && data.imagens.length > 0) {
-                        data.imagens.forEach(nomeImagem => {
-                            const img = document.createElement("img");
-                            img.src = `${diretorioImagens}/${nomeImagem}`;
-                            img.alt = "Imagem";
-                            container.appendChild(img);
-                        });
-                    } else {
-                        console.error('O arquivo imagens.json está vazio ou mal formatado.');
-                    }
-                })
-                .catch(error => console.error('Erro ao carregar imagens:', error));
+            // Obtendo a lista de imagens diretamente do conteúdo JSON
+            if (dadosJson.imagens && dadosJson.imagens.length > 0) {
+                dadosJson.imagens.forEach(nomeImagem => {
+                    const img = document.createElement("img");
+                    img.src = `${diretorioImagens}/${nomeImagem}`;
+                    img.alt = "Imagem";
+                    container.appendChild(img);
+                });
+            } else {
+                console.error('O conteúdo do arquivo imagens.json está vazio ou mal formatado.');
+            }
         }
 
         // Carregar as imagens ao carregar a página
