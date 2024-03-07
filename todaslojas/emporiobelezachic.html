@@ -15,5 +15,31 @@
 
     <!-- Você pode repetir o padrão para todas as imagens que deseja exibir -->
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Array com os caminhos das imagens
+        var paths = [
+            'todaslojas/emporiobelezachic/imagem1.jpg',
+            'todaslojas/emporiobelezachic/imagem2.jpg',
+            // Adicione mais caminhos conforme necessário
+        ];
+
+        // Verifica cada caminho
+        paths.forEach(function (path) {
+            var img = new Image();
+            img.src = path;
+
+            img.onload = function () {
+                console.log('Caminho correto:', path);
+            };
+
+            img.onerror = function () {
+                console.error('Caminho incorreto ou imagem não encontrada:', path);
+            };
+        });
+    });
+</script>
+
+
 </body>
 </html>
