@@ -25,15 +25,23 @@
                     const doc = parser.parseFromString(data, "text/html");
                     const imagens = doc.querySelectorAll("a");
 
+                    if (imagens.length === 0) {
+                        console.error("Nenhuma imagem encontrada no diretório.");
+                        return;
+                    }
+
                     imagens.forEach(imagem => {
                         // Verifica se o item é um arquivo de imagem
-                        if (imagem.textContent.match(/\.(jpeg|jpg|gif|png)$/)) {
+                        const nomeImagem = imagem.textContent.trim();
+                        if (nomeImagem.match(/\.(jpeg|jpg|gif|png)$/)) {
                             const img = document.createElement("img");
-                            img.src = `${diretorioImagens}/${imagem.textContent}`;
+                            img.src = `${diretorioImagens}/${nomeImagem}`;
+                            img.alt = "Imagem";
                             container.appendChild(img);
                         }
                     });
-                });
+                })
+                .catch(error => console.error('Erro ao carregar imagens:', error));
         }
 
         // Carregar as imagens ao carregar a página
