@@ -30,13 +30,6 @@
       border-radius: 20px;
     }
 
-    .search i {
-      position: absolute;
-      right: 20px;
-      top: 15px;
-      color: white;
-    }
-
     .slideshow {
       height: 50vh;
       width: 100%;
@@ -46,24 +39,25 @@
       z-index: 1;
     }
 
-    .slideshow img {
+    .slideshow img, .slideshow video {
       max-width: 90%;
       height: auto;
       object-fit: cover;
       margin: auto;
+      display: none; /* Garante que os slides não sejam exibidos por padrão */
     }
 
     .buttons-container {
       display: flex;
-      flex-direction: column; /* Organiza os botões em coluna */
-      align-items: center; /* Centraliza os botões horizontalmente */
+      flex-direction: column;
+      align-items: center;
     }
 
     .buttons {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      width: 100%; /* Garante que a linha ocupe a largura total */
+      width: 100%;
     }
 
     .button {
@@ -91,42 +85,49 @@
   <i class="fa fa-search"></i>
 </div>
 
-  <div class="slideshow">
-    <img src="promo/promo1.jpg" alt="promo1">
-    <video controls>
-      <source src="promo/video1.mp4" type="video/mp4">
-      Seu navegador não suporta o elemento de vídeo.
-    </video>
-    <img src="promo/promo2.jpg" alt="promo2">
-  </div>
+<div class="slideshow">
+  <img src="promo/promo1.jpg" alt="promo1">
+  <video controls>
+    <source src="promo/video1.mp4" type="video/mp4">
+    Seu navegador não suporta o elemento de vídeo.
+  </video>
+  <img src="promo/promo2.jpg" alt="promo2">
+</div>
 
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slideshow img, .slideshow video');
+<script>
+  function openFile(filename) {
+    window.open(filename, '_blank');
+  }
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.style.display = i === index ? 'block' : 'none';
-      });
-    }
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slideshow img, .slideshow video');
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'block' : 'none';
+    });
+  }
 
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    }
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
 
-    setInterval(nextSlide, 30000);
-  </script>
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  // Inicia o slideshow mostrando o primeiro slide
+  showSlide(currentSlide);
+
+  setInterval(nextSlide, 30000);
+</script>
 
 <div class="buttons-container">
   <div class="buttons">
     <button class="button" onclick="openFile('food.html')">
-      <img src="ícones/comida.png" alt="Food">
+      <img src="ícones/comida.png" alt="Comida">
     </button>
     <button class="button" onclick="openFile('lojas.html')">
       <img src="ícones/lojas.png" alt="Lojas">
@@ -136,7 +137,6 @@
     </button>
   </div>
   <div class="buttons">
-    <!-- Novos botões aqui -->
     <button class="button" onclick="openFile('new1.html')">
       <img src="ícones/contrate.png" alt="New1">
     </button>
