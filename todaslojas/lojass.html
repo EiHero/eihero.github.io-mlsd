@@ -2,19 +2,48 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Slideshow de Imagens</title>
+    <title>Lojas e Produtos</title>
     <style>
+        :root {
+            --main-bg-color: #ffffff; 
+            --main-text-color: #000000; 
+        }
         body {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: var(--main-bg-color); 
+            color: var(--main-text-color); 
         }
-        .slideshow {
-            height: 100vh;
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .item {
+            flex-basis: 45%;
+            margin: 10px;
+            text-align: center;
+        }
+        .item img {
             width: 100%;
-            overflow: hidden;
+            height: auto;
+            cursor: pointer;
         }
-        .slideshow img {
+        .dark-mode {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 50%;
+            scroll-behavior: smooth;
+        }
+        .carousel img {
+            scroll-snap-align: center;
             width: 100%;
             height: auto;
         }
@@ -22,44 +51,62 @@
 </head>
 <body>
 
-<div class="slideshow" id="slideshow">
-    <!-- As imagens serão adicionadas dinamicamente aqui -->
+<div class="carousel" id="carousel">
+    <img src="slides/imagem1.png" alt="Slide 1">
+    <img src="slides/imagem2.png" alt="Slide 2">
+    <img src="slides/imagem3.png" alt="Slide 3">
 </div>
 
+<div class="container">
+    <div class="item" onclick="openHtml('emporiobelezachic')">
+        <img src="logos/emporiobelezachic.gif" alt="emporiobelezachic">
+        <p>emporiobelezachic</p>
+    </div>
+    <div class="item" onclick="openHtml('cdm')">
+        <img src="logos/cdm.png" alt="cdm">
+        <p>cdm2</p>
+    </div>
+    <div class="item" onclick="openHtml('evc')">
+        <img src="logos/evc.png" alt="evc">
+        <p>evc</p>
+    </div>
+    <div class="item" onclick="openHtml('pepearcondicionado')">
+        <img src="logos/pepearcondicionado.png" alt="pepearcondicionado">
+        <p>pepearcondicionado</p>
+    </div>
+</div>
+
+<button class="dark-mode" onclick="toggleDarkMode()">Modo Escuro</button>
+
 <script>
-    const slideshowContainer = document.getElementById('slideshow');
-    const imageFolder = 'ff'; // Nome da pasta onde estão as imagens
-
-    // Lista de nomes de arquivo das imagens (substitua com os nomes reais das suas imagens)
-    const imageNames = ['imagem1.jpg', 'imagem2.jpg', 'imagem3.jpg'];
-
-    // Cria elementos de imagem dinamicamente e adiciona ao slideshowContainer
-    imageNames.forEach(imageName => {
-        const imgElement = document.createElement('img');
-        imgElement.src = `./${imageFolder}/${imageName}`;
-        slideshowContainer.appendChild(imgElement);
-    });
-
-    let currentIndex = 0;
-
-    function showNextImage() {
-        currentIndex = (currentIndex + 1) % imageNames.length;
-        updateSlideshow();
+    function openHtml(productName) {
+        window.open(productName + '.html', '_blank');
     }
 
-    function showPreviousImage() {
-        currentIndex = (currentIndex - 1 + imageNames.length) % imageNames.length;
-        updateSlideshow();
+    function toggleDarkMode() {
+        let body = document.body;
+        let darkModeButton = document.querySelector('.dark-mode');
+        if (body.style.backgroundColor === 'rgb(255, 255, 255)') {
+            body.style.backgroundColor = 'rgb(0, 0, 0)';
+            body.style.color = 'rgb(255, 255, 255)';
+            darkModeButton.textContent = 'Modo Claro';
+        } else {
+            body.style.backgroundColor = 'rgb(255, 255, 255)';
+            body.style.color = 'rgb(0, 0, 0)';
+            darkModeButton.textContent = 'Modo Escuro';
+        }
     }
 
-    function updateSlideshow() {
-        const images = document.querySelectorAll('.slideshow img');
-        images.forEach((img, index) => {
-            img.style.transform = `translateX(-${currentIndex * 100}%)`;
-        });
-    }
-
-    setInterval(showNextImage, 3000); // Alterna para a próxima imagem a cada 3 segundos
+    let counter = 0;
+    let images = document.querySelectorAll('.carousel img');
+    setInterval(function() {
+        counter++;
+        if (counter === images.length) {
+            counter = 0;
+        }
+        let carousel = document.getElementById('carousel');
+        carousel.scrollLeft = images[counter].offsetLeft;
+    }, 3000); 
 </script>
 
 </body>
