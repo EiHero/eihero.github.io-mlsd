@@ -11,31 +11,24 @@
 
     <script>
         // Diretório onde estão as imagens
-        const diretorioImagens = "todaslojas/emporiobelezachic";
-
-        // Lista de imagens
-        const imagens = [
-            "imagem1.jpg",
-            "imagem2.png",
-            "imagem3.gif"
-            // Adicione mais imagens conforme necessário
-        ];
+        const diretorioImagens = "emporiorbelezachic";
 
         // Função para carregar as imagens
         function carregarImagens() {
             const container = document.getElementById("imageContainer");
 
-            // Verifica se há imagens na lista
-            if (imagens.length > 0) {
-                imagens.forEach(nomeImagem => {
-                    const img = document.createElement("img");
-                    img.src = `${diretorioImagens}/${nomeImagem}`;
-                    img.alt = "Imagem";
-                    container.appendChild(img);
-                });
-            } else {
-                console.error('A lista de imagens está vazia.');
-            }
+            // Obtendo a lista de imagens a partir do arquivo JSON
+            fetch(`./${diretorioImagens}/imagens.json`)
+                .then(response => response.json())
+                .then(data => {
+                    data.imagens.forEach(nomeImagem => {
+                        const img = document.createElement("img");
+                        img.src = `${diretorioImagens}/${nomeImagem}`;
+                        img.alt = "Imagem";
+                        container.appendChild(img);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar imagens:', error));
         }
 
         // Carregar as imagens ao carregar a página
