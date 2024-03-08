@@ -5,16 +5,17 @@
         padding: 0;
     }
 
+    $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
     body {
         background: #90CBFB;
-        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-family: $openSans;
     }
 
     .retangulo {
-        width: 90%; /* Ajuste para usar porcentagem */
-        max-width: 60rem; /* Equivalente a 60cm para desktop */
-        height: auto; /* Ajuste para altura automática */
-        padding: 2rem 1rem; /* Adiciona um pouco de padding */
+        width: 90%;
+        max-width: 60rem;
+        height: auto;
+        padding: 2rem 1rem;
         background-color: #F14783;
         border: 1px solid #90CBFB;
         text-align: center;
@@ -25,7 +26,7 @@
     }
 
     h1 {
-        font-size: 2rem; /* Ajuste para usar rem */
+        font-size: 2rem;
         transition: color 0.5s;
         pointer-events: none;
     }
@@ -49,25 +50,14 @@
         height: 100%;
     }
 
-    @media (max-width: 768px) {
-        h1 {
-            font-size: 1.5rem; /* Tamanho menor de fonte para telas pequenas */
-        }
-    }
-
-    @media (max-width: 480px) {
-        .retangulo {
-            width: 95%; /* Maior porcentagem para telas muito pequenas */
-            border-radius: 20px; /* Raio de borda menor para telas pequenas */
-        }
-    }
+    /* Adicionado estilo para as imagens */
     .imagem-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 60vh; /* Ajuste a altura conforme necessário */
+        height: 60vh;
         overflow: hidden;
-        margin-top: -60px; /* Ajuste a distância negativa conforme necessário */
+        margin-top: -10px; /* Ajuste a distância negativa conforme necessário */
     }
 
     .imagem-container img {
@@ -76,5 +66,17 @@
         margin: auto;
         display: block;
     }
-</style>
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .retangulo {
+            width: 95%;
+            border-radius: 20px;
+        }
+    }
 </style>
