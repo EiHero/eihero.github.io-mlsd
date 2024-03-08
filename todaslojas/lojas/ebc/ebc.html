@@ -1,66 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minhas Imagens</title>
-    <style>
-        *, *:before, *:after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
-        body {
-            background: #90CBFB;
-            font-family: $openSans;
-        }
-
-        .retangulo {
-            width: 60cm;
-            height: 5cm; /* Ajuste a altura conforme necessário */
-            background-color: #F14783;
-            border: 1px solid #90CBFB;
-            text-align: center;
-            position: relative;
-            border-radius: 30px;
-            margin: 50px auto;
-            overflow: hidden;
-        }
-
-        h1 {
-            font-size: 36px;
-            line-height: 4cm;
-            transition: color 0.5s;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .retangulo:hover h1 {
-            color: #000; /* Muda a cor do texto para preto quando o hover está no retângulo */
-        }
-
-        .tinta-rosa {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background-color: #90CBFB;
-            transition: height 1s;
-            z-index: 0;
-        }
-
-        .retangulo:hover .tinta-rosa {
-            height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="caminho/do/seu/estilo.css"> <!-- Adicione o caminho correto do seu arquivo CSS -->
 </head>
+
 <body>
     <div class="retangulo">
         <h1>Imagens do Empório Beleza Chic</h1>
@@ -97,4 +44,5 @@
         });
     </script>
 </body>
+
 </html>
