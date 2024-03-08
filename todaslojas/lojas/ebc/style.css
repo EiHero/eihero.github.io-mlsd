@@ -1,0 +1,64 @@
+<style>
+    *, *:before, *:after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #90CBFB;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    }
+
+    .retangulo {
+        width: 90%; /* Ajuste para usar porcentagem */
+        max-width: 60rem; /* Equivalente a 60cm para desktop */
+        height: auto; /* Ajuste para altura automática */
+        padding: 2rem 1rem; /* Adiciona um pouco de padding */
+        background-color: #F14783;
+        border: 1px solid #90CBFB;
+        text-align: center;
+        position: relative;
+        border-radius: 30px;
+        margin: 50px auto;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 2rem; /* Ajuste para usar rem */
+        transition: color 0.5s;
+        pointer-events: none;
+    }
+
+    .retangulo:hover h1 {
+        color: #000;
+    }
+
+    .tinta-rosa {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: #90CBFB;
+        transition: height 1s;
+        z-index: 0;
+    }
+
+    .retangulo:hover .tinta-rosa {
+        height: 100%;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.5rem; /* Tamanho menor de fonte para telas pequenas */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .retangulo {
+            width: 95%; /* Maior porcentagem para telas muito pequenas */
+            border-radius: 20px; /* Raio de borda menor para telas pequenas */
+        }
+    }
+</style>
