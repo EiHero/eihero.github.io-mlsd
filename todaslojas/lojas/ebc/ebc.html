@@ -5,20 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minhas Imagens</title>
-    <link rel="stylesheet" href="estilo1/style.css"> <!-- Ajuste o nome do arquivo conforme necessário -->
+    <link rel="stylesheet" href="estilo1/style.css">
+    <style>
+        /* Adicionado estilo para as imagens */
+        .imagem-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .imagem-container img {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
     <div class="retangulo">
         <h1>Imagens do Empório Beleza Chic</h1>
-        <!-- Movi a tinta rosa para depois do texto -->
         <div class="tinta-rosa"></div>
     </div>
 
-    <!-- Adicione os nomes das imagens manualmente -->
-    <img src="imagens/imagem1.jpg" alt="Imagem 1">
-    <img src="imagens/imagem2.jpg" alt="Imagem 2">
-    <!-- ... adicione mais imagens aqui ... -->
+    <!-- Contêiner para imagens -->
+    <div class="imagem-container">
+        <img src="imagens/imagem1.jpg" alt="Imagem 1">
+        <!-- Adicione mais imagens aqui -->
+    </div>
 
     <!-- Script de verificação de caminhos -->
     <script>
