@@ -67,7 +67,7 @@
         align-items: center;
         height: 60vh; /* Ajuste a altura conforme necessário */
         overflow: hidden;
-        margin-top: -20px; /* Ajuste a distância negativa conforme necessário */
+        margin-top: -5px; /* Ajuste a distância negativa conforme necessário */
     }
 
     .imagem-container img {
