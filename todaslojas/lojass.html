@@ -58,19 +58,19 @@
 </div>
 
 <div class="container">
-    <div class="item" onclick="openHtml()">
+    <div class="item" onclick="openHtml('lojas/ebc/ebc.html')">
         <img src="logos/emporiobelezachic.gif" alt="emporiobelezachic">
         <p>emporiobelezachic</p>
     </div>
-    <div class="item" onclick="openHtml(lojas/SCHMITT/schmitt.html)">
+    <div class="item" onclick="openHtml('lojas/SCHMITT/schmitt.html')">
         <img src="logos/cdm.png" alt="cdm">
         <p>cdm2</p>
     </div>
-    <div class="item" onclick="openHtml()">
+    <div class="item" onclick="openHtml('lojas/evc/evc.html')">
         <img src="logos/evc.png" alt="evc">
         <p>evc</p>
     </div>
-    <div class="item" onclick="openHtml()">
+    <div class="item" onclick="openHtml('lojas/pepearcondicionado/pepearcondicionado.html')">
         <img src="logos/pepearcondicionado.png" alt="pepearcondicionado">
         <p>pepearcondicionado</p>
     </div>
@@ -79,9 +79,8 @@
 <button class="dark-mode" onclick="toggleDarkMode()">Modo Escuro</button>
 
 <script>
-    function openHtml() {
-        window.open('lojas/SCHMITT/schmitt.html', '_blank');
-        window.open('lojas/ebc/ebc.html', '_blank');
+    function openHtml(filePath) {
+        window.open(filePath, '_blank');
     }
 
     function toggleDarkMode() {
