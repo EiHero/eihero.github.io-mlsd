@@ -74,14 +74,21 @@ function imageZoom(imgID, resultID) {
     result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
   }
 
-  function getCursorPos(e) {
+function getCursorPos(e) {
     var a, x = 0, y = 0;
     e = e || window.event;
     a = img.getBoundingClientRect();
-    x = e.pageX - a.left - window.pageXOffset;
-    y = e.pageY - a.top - window.pageYOffset;
+    // Modifica aqui para lidar com eventos de toque
+    if (e.type.startsWith('touch')) {
+        // Verifica se é um evento de toque e, se sim, ajusta as coordenadas x e y
+        x = e.touches[0].pageX - a.left - window.pageXOffset;
+        y = e.touches[0].pageY - a.top - window.pageYOffset;
+    } else {
+        // Eventos de mouse são tratados aqui
+        x = e.pageX - a.left - window.pageXOffset;
+        y = e.pageY - a.top - window.pageYOffset;
+    }
     return {x : x, y : y};
-  }
 }
 
 // Inicialize a função de zoom de imagem quando a página carregar
