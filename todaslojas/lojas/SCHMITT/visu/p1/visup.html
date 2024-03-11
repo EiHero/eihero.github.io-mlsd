@@ -1,52 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f3f3f3;
-  overflow: hidden;
-  font-family: 'Kanit', sans-serif;
-}
-
-.container {
-  display: flex;
-  height: 50vh;
-  width: 80vw;
-}
-
 .img-zoom-container {
-  flex: 1;
-  margin: auto;
   position: relative;
 }
 
 .img-zoom-lens {
   position: absolute;
   border: 1px solid #d4d4d4;
-  width: 40px;
-  height: 40px;
+  width: 40px; /* Você pode ajustar isso conforme necessário */
+  height: 40px; /* Você pode ajustar isso conforme necessário */
 }
 
 .img-zoom-result {
-  flex: 1;
-  height: 100%;
-  margin-left: 10px;
   border: 1px solid #d4d4d4;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* Ajuste a largura e a altura conforme necessário */
+  width: 300px;
+  height: 240px;
+  overflow: hidden;
 }
 
-#descricao {
+.product-info {
   margin-top: 20px;
-  text-align: center;
 }
 </style>
+</head>
+<body>
+
+<h1>Efeito de Lupa em Produtos</h1>
+
+<div class="img-zoom-container">
+  <img id="myimage" src="img_girl.jpg" width="300" height="240" alt="Descrição do Produto">
+  <div id="myresult" class="img-zoom-result"></div>
+</div>
+
+<div class="product-info">
+  <h2>Nome do Produto</h2>
+  <p>Descrição detalhada do produto aqui. Inclua informações como características, preço, opções de cores, etc.</p>
+</div>
+
 <script>
 function imageZoom(imgID, resultID) {
   var img, lens, result, cx, cy;
@@ -59,10 +53,12 @@ function imageZoom(imgID, resultID) {
   cy = result.offsetHeight / lens.offsetHeight;
   result.style.backgroundImage = "url('" + img.src + "')";
   result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+
   lens.addEventListener("mousemove", moveLens);
   img.addEventListener("mousemove", moveLens);
   lens.addEventListener("touchmove", moveLens);
   img.addEventListener("touchmove", moveLens);
+
   function moveLens(e) {
     var pos, x, y;
     e.preventDefault();
@@ -77,33 +73,18 @@ function imageZoom(imgID, resultID) {
     lens.style.top = y + "px";
     result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
   }
+
   function getCursorPos(e) {
     var a, x = 0, y = 0;
     e = e || window.event;
     a = img.getBoundingClientRect();
-    x = e.pageX - a.left;
-    y = e.pageY - a.top;
-    x = x - window.pageXOffset;
-    y = y - window.pageYOffset;
+    x = e.pageX - a.left - window.pageXOffset;
+    y = e.pageY - a.top - window.pageYOffset;
     return {x : x, y : y};
   }
 }
-</script>
-</head>
-<body>
 
-<h1>Visualização do Produto</h1>
-
-<div class="container">
-  <div class="img-zoom-container">
-    <img id="myimage" src="f1.jpg" width="100%" height="100%">
-    <div id="myresult" class="img-zoom-result"></div>
-  </div>
-</div>
-
-<p id="descricao">Aqui vai a descrição do seu produto.</p>
-
-<script>
+// Inicialize a função de zoom de imagem quando a página carregar
 imageZoom("myimage", "myresult");
 </script>
 
