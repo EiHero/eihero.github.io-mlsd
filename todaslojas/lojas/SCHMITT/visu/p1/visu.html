@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /* Define o tamanho da lente: */
+  width: 40px;
+  height: 40px;
+}
+</style>
+<script>
+function imageZoom(imgID, resultID) {
+  var img, lens, result, cx, cy;
+  img = document.getElementById(imgID);
+  result = document.getElementById(resultID);
+  /* Crie a lente: */
+  lens = document.createElement("DIV");
+  lens.setAttribute("class", "img-zoom-lens");
+  /* Insira a lente: */
+  img.parentElement.insertBefore(lens, img);
+  /* Calcule a proporção entre o resultado DIV e a lente: */
+  cx = result.offsetWidth / lens.offsetWidth;
+  cy = result.offsetHeight / lens.offsetHeight;
+  /* Defina propriedades de plano de fundo para o resultado DIV */
+  result.style.backgroundImage = "url('" + img.src + "')";
+  result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+  /* Execute a função quando alguém move a lente sobre a imagem: */
+  lens.addEventListener("mousemove", moveLens);
+  img.addEventListener("mousemove", moveLens);
+  /* E também para dispositivos touch: */
+  lens.addEventListener("touchmove", moveLens);
+  img.addEventListener("touchmove", moveLens);
+  function moveLens(e) {
+    var pos, x, y;
+    /* Prevenir qualquer outra ação que possa ocorrer ao mover sobre a imagem */
+    e.preventDefault();
+    /* Obtenha a posição x e y do cursor: */
+    pos = getCursorPos(e);
+    /* Calcule a posição da lente: */
+    x = pos.x - (lens.offsetWidth / 2);
+    y = pos.y - (lens.offsetHeight / 2);
+    /* Evite que a lente esteja fora da imagem: */
+    if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
+    if (x < 0) {x = 0;}
+    if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
+    if (y < 0) {y = 0;}
+    /* Defina a posição da lente: */
+    lens.style.left = x + "px";
+    lens.style.top = y + "px";
+    /* Exiba o que a lente "vê": */
+    result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+  }
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /* Obtenha a posição x e y do image: */
+    a = img.getBoundingClientRect();
+    /* Calcule as coordenadas do cursor x e y em relação ao objeto: */
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /* Considere qualquer rolagem da página: */
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+</script>
+</head>
+<body>
+
+<h1>Efeito de lupa</h1>
+
+<div class="img-zoom-container">
+  <img id="myimage" src="img_girl.jpg" width="300" height="240">
+  <div id="myresult" class="img-zoom-result"></div>
+</div>
+
+<script>
+// Inicialize a função de zoom de imagem
+imageZoom("myimage", "myresult");
+</script>
+
+</body>
+</html>
