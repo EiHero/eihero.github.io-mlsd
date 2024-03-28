@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lojas e Produtos</title>
+    <style>
+        :root {
+            --main-bg-color: #ffffff;
+            --main-text-color: #000000;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .item {
+            flex-basis: 45%;
+            margin: 10px;
+            text-align: center;
+            cursor: pointer; /* Adiciona um cursor de pointer para indicar clicabilidade */
+        }
+        .item img {
+            width: 100%;
+            height: auto;
+        }
+        .dark-mode {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 50%;
+            scroll-behavior: smooth;
+        }
+        .carousel img {
+            scroll-snap-align: center;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="carousel" id="carousel">
+    <img src="slides/imagem1.png" alt="Slide 1">
+    <img src="slides/imagem2.png" alt="Slide 2">
+    <img src="slides/imagem3.png" alt="Slide 3">
+</div>
+
+<div class="container">
+    <div class="item" onclick="openHtml('lojas/ebc/ebc.html')">
+        <img src="logos/emporiobelezachic.gif" alt="emporiobelezachic">
+        <p>emporiobelezachic</p>
+    </div>
+    <div class="item" onclick="openHtml('lojas/SCHMITT/schmitt.html')">
+        <img src="logos/sam.gif" alt="sam">
+        <p>Schmitt Arte em Madeira</p>
+    </div>
+    <div class="item" onclick="openHtml('lojas/evc/evc.html')">
+        <img src="logos/evc.png" alt="evc">
+        <p>evc</p>
+    </div>
+    <div class="item" onclick="openHtml('lojas/daca/index.html')">
+        <img src="logos/daca.png" alt="daca">
+        <p>daca</p>
+    </div>
+</div>
+
+<button class="dark-mode" onclick="toggleDarkMode()">Modo Escuro</button>
+
+<script>
+    function openHtml(filePath) {
+        window.open(filePath, '_blank');
+    }
+
+    function toggleDarkMode() {
+        let body = document.body;
+        let darkModeButton = document.querySelector('.dark-mode');
+        if (body.style.backgroundColor === 'rgb(255, 255, 255)') {
+            body.style.backgroundColor = 'rgb(0, 0, 0)';
+            body.style.color = 'rgb(255, 255, 255)';
+            darkModeButton.textContent = 'Modo Claro';
+        } else {
+            body.style.backgroundColor = 'rgb(255, 255, 255)';
+            body.style.color = 'rgb(0, 0, 0)';
+            darkModeButton.textContent = 'Modo Escuro';
+        }
+    }
+
+    let counter = 0;
+    let images = document.querySelectorAll('.carousel img');
+    setInterval(function() {
+        counter++;
+        if (counter === images.length) {
+            counter = 0;
+        }
+        let carousel = document.getElementById('carousel');
+        carousel.scrollLeft = images[counter].offsetLeft;
+    }, 3000); 
+</script>
+
+</body>
+</html>
