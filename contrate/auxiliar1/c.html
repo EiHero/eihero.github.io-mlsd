@@ -14,13 +14,33 @@
         .section ul li { margin-bottom: 10px; }
         /* Estilo para a imagem */
         .foto-perfil {
-            width: 150px; /* Largura do quadro da foto */
-            height: 150px; /* Altura do quadro da foto */
-            border: 1px solid #ccc; /* Borda cinza claro */
-            margin: 10px auto; /* Centraliza o quadro */
-            background-image: url('sua_foto.jpg'); /* Substitua 'sua_foto.jpg' pelo nome do seu arquivo de imagem */
-            background-size: cover; /* Garante que a foto cubra todo o quadro */
-            border-radius: 50%; /* Deixa o quadro redondo */
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ccc;
+            margin: 10px auto;
+            background-image: url('sua_foto.jpg');
+            background-size: cover;
+            border-radius: 50%;
+        }
+        /* Estilos para os botões */
+        .social-buttons {
+            text-align: center; /* Centraliza os botões */
+            margin-top: 20px; /* Espaçamento do topo */
+        }
+        .social-button {
+            text-decoration: none; /* Remove o sublinhado do link */
+            display: inline-block; /* Faz o botão não ocupar a linha inteira */
+            margin: 10px; /* Espaçamento ao redor dos botões */
+            padding: 10px; /* Espaçamento interno */
+            border-radius: 5px; /* Borda levemente arredondada */
+            color: white; /* Cor do texto */
+            font-weight: bold; /* Texto em negrito */
+        }
+        .whatsapp {
+            background-color: #25D366; /* Verde WhatsApp */
+        }
+        .instagram {
+            background-color: #E4405F; /* Rosa Instagram */
         }
     </style>
 </head>
@@ -29,7 +49,6 @@
         <header>
             <h1>Seu Nome</h1>
             <p>Profissão ou título</p>
-            <!-- Quadro para a foto de perfil -->
             <div class="foto-perfil"></div>
         </header>
         <div class="section">
@@ -56,6 +75,11 @@
                 <li>Habilidade 2</li>
                 <li>Habilidade 3</li>
             </ul>
+        </div>
+        <!-- Botões de contato social -->
+        <div class="social-buttons">
+            <a href="https://wa.me/seunumerodetelefone?text=Olá!%20Vi%20seu%20currículo%20e%20gostaria%20de%20conversar%20com%20você." class="social-button whatsapp">WhatsApp</a>
+            <a href="https://instagram.com/seuusuariodoinstagram" class="social-button instagram">Instagram</a>
         </div>
     </div>
 </body>
