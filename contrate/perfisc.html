@@ -2,21 +2,29 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galeria de Fotos</title>
 <style>
   body { font-family: Arial, sans-serif; }
-  .gallery { display: flex; flex-wrap: wrap; }
-  .photo { margin: 90px; }
-  .photo img { width: 150px; height: auto; }
-  .category { cursor: pointer; padding: 5px; border: 1px solid #ddd; margin-right: 5px; }
-  .hidden { display: none; }
+  .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
+  .photo { margin: 10px; }
+  .photo img { width: 100%; max-width: 200px; height: auto; }
+  .dropdown { position: relative; display: inline-block; }
+  .dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; }
+  .dropdown-content span { color: black; padding: 12px 16px; text-decoration: none; display: block; }
+  .dropdown-content span:hover { background-color: #f1f1f1 }
+  .show { display: block; }
 </style>
 </head>
 <body>
 
-<div id="filter">
-  <span class="category" onclick="filterCategory('auxiliares')">Auxiliares Administrativos</span>
-  <span class="category" onclick="filterCategory('limpadores')">Limpadores de Quintal</span>
+<div class="dropdown">
+  <button onclick="toggleDropdown()" class="dropbtn">Categorias</button>
+  <div id="myDropdown" class="dropdown-content">
+    <span onclick="filterCategory('auxiliares')">Auxiliares Administrativos</span>
+    <span onclick="filterCategory('limpadores')">Limpadores de Quintal</span>
+    <!-- Adicione mais categorias aqui -->
+  </div>
 </div>
 
 <div id="gallery" class="gallery">
@@ -32,7 +40,13 @@ var photos = [
   // Adicione mais fotos aqui
 ];
 
+function toggleDropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
 function filterCategory(category) {
+  var dropdown = document.getElementById("myDropdown");
+  dropdown.classList.remove("show");
   document.querySelectorAll('.photo').forEach(photo => {
     photo.style.display = photo.getAttribute('data-category') === category ? 'block' : 'none';
   });
@@ -52,6 +66,19 @@ window.onload = function() {
     gallery.appendChild(photoDiv);
   });
 };
+
+// Fecha o dropdown se o usuário clicar fora dele
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 </script>
 
 </body>
