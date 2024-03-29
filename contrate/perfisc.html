@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Galeria de Fotos</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .gallery { display: flex; flex-wrap: wrap; }
+  .photo { margin: 10px; }
+  .photo img { width: 150px; height: auto; }
+  .category { cursor: pointer; padding: 5px; border: 1px solid #ddd; margin-right: 5px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div id="filter">
+  <span class="category" onclick="filterCategory('auxiliares')">Auxiliares Administrativos</span>
+  <span class="category" onclick="filterCategory('limpadores')">Limpadores de Quintal</span>
+</div>
+
+<div id="gallery" class="gallery">
+  <!-- As fotos e categorias serão inseridas aqui pelo JavaScript -->
+</div>
+
+<script>
+var photos = [
+  { src: 'auxiliar1.jpg', category: 'auxiliares', name: 'auxiliar1' },
+  { src: 'auxiliar2.jpg', category: 'auxiliares', name: 'auxiliar2' },
+  { src: 'limpador1.jpg', category: 'limpadores', name: 'limpador1' },
+  { src: 'limpador2.jpg', category: 'limpadores', name: 'limpador2' },
+  // Adicione mais fotos aqui
+];
+
+function filterCategory(category) {
+  document.querySelectorAll('.photo').forEach(photo => {
+    photo.style.display = photo.getAttribute('data-category') === category ? 'block' : 'none';
+  });
+}
+
+function showProfile(name) {
+  window.location.href = name + '/c.html';
+}
+
+window.onload = function() {
+  var gallery = document.getElementById('gallery');
+  photos.forEach(photo => {
+    var photoDiv = document.createElement('div');
+    photoDiv.className = 'photo';
+    photoDiv.setAttribute('data-category', photo.category);
+    photoDiv.innerHTML = '<img src="' + photo.src + '" onclick="showProfile(\'' + photo.name + '\')">';
+    gallery.appendChild(photoDiv);
+  });
+};
+</script>
+
+</body>
+</html>
