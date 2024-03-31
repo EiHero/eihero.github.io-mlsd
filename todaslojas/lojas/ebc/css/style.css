@@ -1,61 +1,19 @@
-/* Estilos Responsivos */
-
-/* Vídeo Responsivo */
-.video-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  /* Mantém a proporção de 16:9 para vídeos */
-  padding-top: 56.25%;
+/* Estilos para o Banner */
+.banner-container {
+  text-align: center; /* Centraliza o banner */
+  padding: 10px 0; /* Adiciona um pouco de espaço acima e abaixo do banner */
 }
 
-.video-container iframe,
-.video-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.banner-container img {
+  width: 50%; /* Define a largura do banner para metade do espaço disponível */
+  max-width: 200px; /* Define uma largura máxima para o banner */
+  height: auto; /* Mantém a proporção do banner */
+  display: inline-block; /* Garante que o banner não ocupe toda a largura */
 }
 
-/* Imagens Responsivas */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Ajustes Gerais para Mobile */
 @media (max-width: 768px) {
-  .header_section {
-    padding: 20px 0;
+  .banner-container img {
+    width: 80%; /* Em dispositivos móveis, o banner pode ocupar mais espaço */
+    max-width: 150px; /* Ajusta a largura máxima em dispositivos móveis */
   }
-
-  .navbar-brand span {
-    font-size: 18px; /* Ajuste o tamanho da fonte para dispositivos móveis */
-  }
-
-  /* Ajustes para boxes de produtos em telas pequenas */
-  .shop_section .box {
-    margin-bottom: 20px;
-  }
-  
-  /* Ajuste para o texto dentro dos boxes para evitar sobreposição */
-  .shop_section .detail-box h6 {
-    font-size: 14px;
-  }
-  
-  /* Ajuste para as imagens dos produtos para não ficarem muito grandes em telas pequenas */
-  .shop_section .img-box img {
-    width: 100%; /* Faz com que a imagem ocupe todo o espaço disponível */
-    height: auto; /* Mantém a proporção da imagem */
-  }
-}
-
-/* Garante que o botão 'Ver todos os produtos' seja facilmente clicável em dispositivos móveis */
-.btn-box a {
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  box-sizing: border-box; /* Garante que o padding não aumente o tamanho definido */
 }
