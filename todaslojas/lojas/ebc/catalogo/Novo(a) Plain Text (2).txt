@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.produto {
+    width: 48%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.produto img {
+    width: 100%;
+    height: auto;
+}
+
+.nome {
+    font-weight: bold;
+}
+
+.preco {
+    color: red;
+    font-weight: bold;
+}
+
+#filtro p {
+    cursor: pointer;
+    color: blue;
+}
+
+@media (max-width: 600px) {
+    .produto {
+        width: 100%;
+    }
+}

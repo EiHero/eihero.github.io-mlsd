@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos de Beleza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="filtro">
+        <button id="btnFiltro">Filtrar Categorias</button>
+        <div id="categorias" style="display:none;">
+            <p>Esmaltes</p>
+            <p>Maquiagens</p>
+            <p>Xampus</p>
+            <p>Cremes hidratantes</p>
+            <p>Perfumes</p>
+        </div>
+    </div>
+
+    <div id="catalogo">
+        <!-- Produtos serão inseridos aqui pelo JavaScript -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
