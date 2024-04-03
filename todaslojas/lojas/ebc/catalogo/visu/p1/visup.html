@@ -37,17 +37,37 @@
     }
 
     .whatsapp-button {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       background-color: #25D366;
-      border: none;
-      color: white;
-      padding: 10px;
-      text-align: center;
       text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      border-radius: 12px;
+      animation: pulsate 2s infinite;
+    }
+    
+    .whatsapp-button img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    
+    @keyframes pulsate {
+      0% {
+        box-shadow: 0 0 0 0 #25D366;
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
     }
   </style>
 </head>
@@ -78,7 +98,9 @@
     <p class="product-price">R$10,00</p>
   </div>
 
-  <a href="https://wa.me/5593984111006?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20que%20vocês%20oferecem.%0AObrigado!" class="whatsapp-button" target="_blank">Contate-nos pelo WhatsApp</a>
+  <a href="https://wa.me/5593984111006?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20que%20vocês%20oferecem.%0AObrigado!" class="whatsapp-button" target="_blank">
+    <img src="wp.png" alt="WhatsApp">
+  </a>
 
   <script>
     function setImage(imageSrc) {
