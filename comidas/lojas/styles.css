@@ -1,0 +1,60 @@
+/* Reset básico para remover margens padrões */
+body, h1, p, button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif; /* Fonte mais legível em dispositivos móveis */
+}
+
+header, footer {
+    background-color: #f4f4f4; /* Cor de fundo para o cabeçalho e rodapé */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto no cabeçalho e rodapé */
+}
+
+main {
+    padding: 20px; /* Espaçamento interno na área principal */
+    display: flex; /* Usa flexbox para organizar os produtos */
+    flex-direction: column; /* Empilha os itens verticalmente em dispositivos móveis */
+    align-items: center; /* Centraliza os produtos horizontalmente */
+}
+
+.product {
+    width: 90%; /* Largura adaptativa para dispositivos móveis */
+    margin-bottom: 20px; /* Espaçamento entre os produtos */
+    background-color: #fff; /* Fundo branco para destacar os produtos */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra para dar um efeito elevado */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto e outros elementos dentro do produto */
+}
+
+.product img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+button {
+    background-color: #4CAF50; /* Cor verde para botões */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#finalizarCompra {
+    width: 90%; /* Largura adaptativa para o botão de finalizar compra */
+    padding: 15px; /* Maior espaço para fácil interação em telas de toque */
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 10px; /* Reduz o espaçamento em dispositivos muito pequenos */
+    }
+}
