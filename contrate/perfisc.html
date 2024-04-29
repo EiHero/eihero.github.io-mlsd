@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galeria de Fotos</title>
 <style>
-  body { font-family: Arial, sans-serif; }
-  .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
-  .photo { margin: 10px; }
+  body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
+  .gallery { display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; }
+  .photo { margin: 10px; width: calc(50% - 20px); }
   .photo img { width: 100%; max-width: 200px; height: auto; }
   .dropdown { position: relative; display: inline-block; }
   .dropbtn { background-color: #464746; color: white; padding: 10px; font-size: 16px; border: none; cursor: pointer; }
@@ -15,12 +15,13 @@
   .dropdown-content span { color: black; padding: 12px 16px; text-decoration: none; display: block; }
   .dropdown-content span:hover { background-color: #f1f1f1 }
   .show { display: block; }
+  .dark-mode { background-color: #333; color: white; position: fixed; top: 10px; right: 10px; padding: 5px; border-radius: 5px; cursor: pointer; }
 </style>
 </head>
 <body>
 
 <div class="dropdown">
-  <button onclick="toggleDropdown()" class="dropbtn">Selecione uma Categoria ▼</button>
+  <button onclick="toggleDropdown()" class="dropbtn">Categoria ▼</button>
   <div id="myDropdown" class="dropdown-content">
     <span onclick="filterCategory('auxiliares')">Auxiliares Administrativos</span>
     <span onclick="filterCategory('limpadores')">Limpadores de Quintal</span>
@@ -32,6 +33,47 @@
 <div id="gallery" class="gallery">
   <!-- As fotos e categorias serão inseridas aqui pelo JavaScript -->
 </div>
+
+<button onclick="toggleDarkMode()" class="dark-mode">Modo Escuro</button>
+
+<script>
+// Restante do código permanece o mesmo
+// ...
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+</script>
+
+</body>
+</html>
+
+
+<script>
+// Restante do código permanece o mesmo
+// ...
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+</script>
+
+</body>
+</html>
+
+
+<script>
+// Restante do código permanece o mesmo
+// ...
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+</script>
+
+</body>
+</html>
+
 
 <script>
 // Restante do código permanece o mesmo
