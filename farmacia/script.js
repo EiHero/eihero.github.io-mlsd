@@ -25,7 +25,7 @@ function updateCartUI() {
 }
 
 function finalizePurchase() {
-    let baseUrl = "https://api.whatsapp.com/send?phone=SEUNUMERO&text=";
+    let baseUrl = "https://api.whatsapp.com/send?phone=+5593984111006&text=";
     let message = "Olá, gostaria de finalizar o seguinte pedido:\n" + cart.map(product => `${product.store} - ${product.name} - R$ ${product.price.toFixed(2)}`).join("\n");
     window.open(baseUrl + encodeURIComponent(message), '_blank');
 }
