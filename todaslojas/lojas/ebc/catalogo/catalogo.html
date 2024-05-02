@@ -87,8 +87,7 @@
 // Lista de produtos (normalmente viria de um banco de dados)
 var produtos = [
   { id: 1, nome: 'Produto 1', preco: 10.00, imagens: ['img1.jpg', 'img2.jpg', 'img3.jpg'] },
-
-{ id: 2, nome: 'Produto 2', preco: 12.00, imagens: ['img2.jpg', 'img2.jpg', 'img3.jpg'] },
+  { id: 1, nome: 'Produto 2', preco: 12.00, imagens: ['img2.jpg', 'img2.jpg', 'img3.jpg'] }
   // Adicione mais produtos conforme necessário
 ];
 
@@ -125,8 +124,8 @@ function exibirItensCarrinho() {
 // Função para mostrar imagens do produto
 function mostraImagens(produtoId) {
   var produto = produtos.find(p => p.id === produtoId);
-  var imagensHtml = produto.imagens.map(img => '<img src="' + img + '" alt="' + produto.nome + '">').join('');
-  alert(imagensHtml); // Substitua por uma modal ou outro método de exibição conforme preferir
+  var url = 'visu/p' + produto.id + '/visup' + produto.id + '.html';
+  window.location.href = url;
 }
 
 // Função para alternar a visibilidade do carrinho
@@ -143,7 +142,7 @@ function finalizarCompra() {
     mensagem += '\n- ' + item.nome + ' - R$ ' + item.preco.toFixed(2);
   });
   // Redireciona para o WhatsApp
-  window.location.href = 'https://api.whatsapp.com/send?phone=+5593984088226&text=' + encodeURIComponent(mensagem);
+  window.location.href = 'https://api.whatsapp.com/send?phone=+5593984111006&text=' + encodeURIComponent(mensagem);
 }
 
 // Adiciona produtos à página
@@ -170,9 +169,9 @@ campoBusca.addEventListener('input', function() {
                              '<img src="' + produto.imagens[0] + '" alt="' + produto.nome + '" onclick="mostraImagens(' + produto.id + ')">' +
                              '<p>' + produto.nome + '</p>' +
                              '<p>R$ ' + produto.preco + '</p>' +
-                             '<button onclick="adicionaAoCarrinho(' + produto.id + ')">Adicionar ao Carrinho</button>' +
-                             '</div>';
-  });
+                             '<button onclick="adicionaCarrinho(' + produto.id + ')">Adicionar ao Carrinho</button>' +
+'</div>';
+});
 });
 </script>
 
