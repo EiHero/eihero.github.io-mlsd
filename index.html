@@ -22,7 +22,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      background-image: url('sua-imagem-de-fundo.jpg'); /* Substitua 'sua-imagem-de-fundo.jpg' pelo nome da sua imagem de fundo com o caminho correto */
+      background-image: url('sua-imagem-de-fundo.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -75,10 +75,9 @@
 </head>
 <body>
 
-<!-- Seu conteúdo HTML aqui -->
-<div class="slideshow" onclick="openFile('promo/ebc.html')">
+<div class="slideshow" onclick="openFile('promo/promo1.html')">
   <img src="promo/promo1.jpg" alt="promo1">
-  <video controls>
+  <video controls autoplay loop muted id="videoSlide">
     <source src="promo/video.mp4" type="video/mp4">
     Seu navegador não suporta o elemento de vídeo.
   </video>
@@ -112,6 +111,15 @@
   showSlide(currentSlide);
 
   setInterval(nextSlide, 30000);
+
+  // Forçar a reprodução automática após a interação do usuário
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const videoSlide = document.getElementById('videoSlide');
+    if (videoSlide) {
+      videoSlide.muted = true;
+      videoSlide.play().catch(e => console.error("Erro na reprodução automática: ", e));
+    }
+  });
 </script>
 
 <div class="buttons-container">
