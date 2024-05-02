@@ -1,35 +1,180 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Beleza</title>
-    <link rel="stylesheet" href="estilo.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loja Virtual</title>
+<style>
+  /* Estilos adicionais para o botão do carrinho */
+  #botaoCarrinho {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f90;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+
+  /* Estilos para o carrinho oculto */
+  .carrinho {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    width: 300px;
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  /* Estilos para os produtos */
+  #produtos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px; /* Adicionado margem para o campo de busca fixo */
+  }
+
+  .produto {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: calc(50% - 20px); /* 50% da largura da tela, menos o espaço das margens */
+    box-sizing: border-box; /* Para incluir padding e border na largura */
+  }
+
+  .produto img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+
+  /* Estilos para o campo de busca */
+  #campoBusca {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+  }
+</style>
 </head>
 <body>
 
-<div id="filtro" class="filtro">
-    <button id="btnFiltro">Filtrar Categorias</button>
-    <div id="categorias" class="categorias escondido">
-        <div>Esmaltes</div>
-		<div>Gloss</div>
-        <div>Cílios</div>
-		<div>Esponjas</div>
-        <div>Maquiagens</div>
-        <div>Sabonetes</div>
-		<div>Mascaras</div>
-		<div>Batons</div>
-		<div>Gels</div>
-		<div>Bases</div>
-        <div>Cremes hidratantes</div>
-        <div>Perfumes</div>
-    </div>
+<input type="text" id="campoBusca" placeholder="Buscar produto...">
+<div id="produtos">
+  <!-- Produtos serão adicionados aqui -->
 </div>
 
-<div id="catalogo" class="catalogo">
-    <!-- Produtos adicionados aqui via JavaScript -->
+<button id="botaoCarrinho" onclick="toggleCarrinho()">Carrinho</button>
+
+<div class="carrinho" id="carrinho">
+  <h3>Carrinho</h3>
+  <ul id="itensCarrinho"></ul>
+  <button onclick="finalizarCompra()">Finalizar Compra</button>
 </div>
 
-<script src="script.js"></script>
+<script>
+// Lista de produtos (normalmente viria de um banco de dados)
+var produtos = [
+  { id: 1, nome: 'Produto 1', preco: 10.00, imagens: ['img1.jpg', 'img2.jpg', 'img3.jpg'] },
+
+{ id: 2, nome: 'Produto 2', preco: 12.00, imagens: ['img2.jpg', 'img2.jpg', 'img3.jpg'] },
+  // Adicione mais produtos conforme necessário
+];
+
+var itensCarrinho = [];
+
+// Função para adicionar produto ao carrinho
+function adicionaAoCarrinho(produtoId) {
+  var produto = produtos.find(p => p.id === produtoId);
+  itensCarrinho.push(produto);
+  exibirItensCarrinho();
+}
+
+// Função para remover produto do carrinho
+function removeDoCarrinho(index) {
+  itensCarrinho.splice(index, 1);
+  exibirItensCarrinho();
+}
+
+// Função para exibir os itens do carrinho
+function exibirItensCarrinho() {
+  var listaItens = document.getElementById('itensCarrinho');
+  listaItens.innerHTML = '';
+  itensCarrinho.forEach(function(item, index) {
+    var listItem = document.createElement('li');
+    listItem.textContent = item.nome + ' - R$ ' + item.preco.toFixed(2);
+    var removeButton = document.createElement('button');
+    removeButton.textContent = 'Remover';
+    removeButton.onclick = function() { removeDoCarrinho(index); };
+    listItem.appendChild(removeButton);
+    listaItens.appendChild(listItem);
+  });
+}
+
+// Função para mostrar imagens do produto
+function mostraImagens(produtoId) {
+  var produto = produtos.find(p => p.id === produtoId);
+  var imagensHtml = produto.imagens.map(img => '<img src="' + img + '" alt="' + produto.nome + '">').join('');
+  alert(imagensHtml); // Substitua por uma modal ou outro método de exibição conforme preferir
+}
+
+// Função para alternar a visibilidade do carrinho
+function toggleCarrinho() {
+  var carrinho = document.getElementById('carrinho');
+  carrinho.style.display = carrinho.style.display === 'block' ? 'none' : 'block';
+}
+
+// Função para finalizar a compra
+function finalizarCompra() {
+  // Construa a mensagem para o WhatsApp
+  var mensagem = 'Olá! Gostaria de finalizar a compra dos seguintes itens:';
+  itensCarrinho.forEach(item => {
+    mensagem += '\n- ' + item.nome + ' - R$ ' + item.preco.toFixed(2);
+  });
+  // Redireciona para o WhatsApp
+  window.location.href = 'https://api.whatsapp.com/send?phone=+5593984088226&text=' + encodeURIComponent(mensagem);
+}
+
+// Adiciona produtos à página
+var divProdutos = document.getElementById('produtos');
+produtos.forEach(produto => {
+  divProdutos.innerHTML += '<div class="produto">' +
+                           '<img src="' + produto.imagens[0] + '" alt="' + produto.nome + '" onclick="mostraImagens(' + produto.id + ')">' +
+                           '<p>' + produto.nome + '</p>' +
+                           '<p>R$ ' + produto.preco + '</p>' +
+                           '<button onclick="adicionaAoCarrinho(' + produto.id + ')">Adicionar ao Carrinho</button>' +
+                           '</div>';
+});
+
+// Adiciona funcionalidade de busca em tempo real
+var campoBusca = document.getElementById('campoBusca');
+campoBusca.addEventListener('input', function() {
+  var termoBusca = campoBusca.value.toLowerCase();
+  var produtosFiltrados = produtos.filter(function(produto) {
+    return produto.nome.toLowerCase().includes(termoBusca);
+  });
+  divProdutos.innerHTML = '';
+  produtosFiltrados.forEach(function(produto) {
+    divProdutos.innerHTML += '<div class="produto">' +
+                             '<img src="' + produto.imagens[0] + '" alt="' + produto.nome + '" onclick="mostraImagens(' + produto.id + ')">' +
+                             '<p>' + produto.nome + '</p>' +
+                             '<p>R$ ' + produto.preco + '</p>' +
+                             '<button onclick="adicionaAoCarrinho(' + produto.id + ')">Adicionar ao Carrinho</button>' +
+                             '</div>';
+  });
+});
+</script>
+
 </body>
 </html>
