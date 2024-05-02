@@ -1,40 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gatinhos Aventureiros</title>
-<style>
-  /* Estilos padrão */
-  img { max-width: 100%; height: auto; }
-  .banner { width: 100%; height: 200px; background-color: #f0f0f0; }
-  .gatinhos { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; }
-  .gatinho { flex: 0 1 100px; margin: 5px; }
-  
-  /* Media queries para telas menores */
-  @media (max-width: 600px) {
-    .gatinho { flex: 0 1 80px; } /* Ajusta o tamanho dos gatinhos em telas menores */
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARCEIROS EXTERNOS</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <h1>PARCEIROS EXTERNOS</h1>
+        <input type="text" id="searchInput" placeholder="Digite o nome do produto...">
+        <button onclick="searchProducts()">Buscar</button>
+        <div id="results"></div>
+    </div>
+    <div id="cart" style="position: fixed; bottom: 50px; right: 10px; background: rgba(0,0,0,0.5); color: white; padding: 10px; display: none;">
+        <p>Carrinho:</p>
+        <div id="cartItems"></div>
+        <button onclick="finalizePurchase()" style="margin-top: 10px;">Finalizar Compra</button>
+    </div>
+    <button style="position: fixed; bottom: 10px; right: 10px; padding: 10px 20px;" onclick="toggleCartVisibility()">Ver Carrinho</button>
+    <script src="script.js"></script>
+    <script>
+        // Função para buscar produtos em tempo real
+        function searchProducts() {
+            var searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            var resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = '';
 
-<!<!-- Espaço para o banner -->
-<div class="banner">
-  <!-- Insira a imagem do banner aqui -->
-  <img src="banner.gif" alt="Banner dos Gatinhos" style="width:100%; height:100%;">
-</div>
+            var products = [
+                { name: 'Feijão', store: 'Loja CDM', price: 43.00, image: 'feijao.png' },
+                { name: 'Feijão', store: 'Loja MAIS VC', price: 54.93, image: 'feijao.png' }
+            ];
 
+            var foundProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery));
 
-<!-- Imagens dos gatinhos -->
-<div class="gatinhos">
-  <div class="gatinho"><img src="gatinho1.jpg" alt="Gatinho Samurai"></div>
-  <div class="gatinho"><img src="gatinho2.jpg" alt="Gatinho Jedi"></div>
-  <div class="gatinho"><img src="gatinho3.jpg" alt="Gatinho Pirata"></div>
-  <!-- Adicione mais imagens conforme necessário -->
-</div>
+            if (foundProducts.length > 0) {
+                foundProducts.sort((a, b) => a.price - b.price);
+                foundProducts.forEach(product => {
+                    var productDiv = document.createElement('div');
+                    productDiv.classList.add('product');
+                    var productName = document.createElement('p');
+                    productName.textContent = 'Produto Encontrado:';
+                    var productImage = document.createElement('img');
+                    productImage.src = product.image;
+                    var storeInfo = document.createElement('p');
+                    storeInfo.textContent = `Na loja ${product.store} - ${product.name} R$ ${product.price.toFixed(2)}`;
+                    var addButton = document.createElement('button');
+                    addButton.textContent = 'Adicionar ao Carrinho';
+                    addButton.onclick = () => addToCart(product);
+                    productDiv.appendChild(productName);
+                    productDiv.appendChild(productImage);
+                    productDiv.appendChild(storeInfo);
+                    productDiv.appendChild(addButton);
+                    resultsContainer.appendChild(productDiv);
+                });
+            } else if (searchQuery.length > 0) {
+                resultsContainer.textContent = 'O produto não foi encontrado em parceiros externos.';
+            }
+        }
 
+        // Chamar a função de busca em tempo real quando o usuário digitar
+        document.getElementById('searchInput').addEventListener('input', searchProducts);
+    </script>
 </body>
 </html>
-
-
