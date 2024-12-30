@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passagens de Navios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f8ff;
+        }
+        header {
+            background: #006994;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navio-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .navio-card {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .navio-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .navio-card h3 {
+            margin: 10px 0;
+            color: #006994;
+        }
+        .navio-card p {
+            margin: 5px 0;
+            color: #333;
+        }
+        .navio-card button {
+            background: #006994;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .navio-card button:hover {
+            background: #004f73;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Passagens de Navios</h1>
+        <p>Encontre o melhor navio para sua viagem</p>
+    </header>
+    <div class="navio-container">
+        <!-- Navio 1 -->
+        <div class="navio-card">
+            <img src="https://via.placeholder.com/300x200" alt="Navio Aurora">
+            <h3>Navio Aurora</h3>
+            <p>Preço: R$ 350,00</p>
+            <p>Embarque: 10:00</p>
+            <p>Chegada: 16:00</p>
+            <button>Comprar Passagem</button>
+        </div>
+        <!-- Navio 2 -->
+        <div class="navio-card">
+            <img src="https://via.placeholder.com/300x200" alt="Navio Estrela do Mar">
+            <h3>Navio Estrela do Mar</h3>
+            <p>Preço: R$ 450,00</p>
+            <p>Embarque: 12:00</p>
+            <p>Chegada: 18:30</p>
+            <button>Comprar Passagem</button>
+        </div>
+        <!-- Navio 3 -->
+        <div class="navio-card">
+            <img src="https://via.placeholder.com/300x200" alt="Navio Oceano Azul">
+            <h3>Navio Oceano Azul</h3>
+            <p>Preço: R$ 500,00</p>
+            <p>Embarque: 09:00</p>
+            <p>Chegada: 15:00</p>
+            <button>Comprar Passagem</button>
+        </div>
+    </div>
+</body>
+</html>

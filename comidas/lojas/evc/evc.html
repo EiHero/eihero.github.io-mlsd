@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejador de Viagens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #00c6ff, #0072ff);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+        }
+        button {
+            background-color: #0072ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056c1;
+            transform: scale(1.05);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px auto;
+            max-width: 300px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        li {
+            padding: 10px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #resultado {
+            margin-top: 30px;
+            font-size: 1.5em;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Planejador de Viagens</h1>
+    <button id="botaoPartida" onclick="toggleList('ondeEsta')">
+        <i class="fas fa-anchor"></i> Escolha seu porto de partida
+    </button>
+    <ul id="ondeEsta">
+        <li onclick="selecionar('partida', 'Belterra')">Belterra</li>
+        <li onclick="selecionar('partida', 'Monte Alegre')">Monte Alegre</li>
+    </ul>
+
+    <button id="botaoDestino" onclick="toggleList('ondeVai')" style="display:none;">
+        <i class="fas fa-ship"></i> Escolha seu destino
+    </button>
+    <ul id="ondeVai">
+        <li onclick="selecionar('destino', 'Miami')">Miami</li>
+        <li onclick="selecionar('destino', 'Barcelona')">Barcelona</li>
+    </ul>
+
+    <button id="botaoMes" onclick="toggleList('meses')" style="display:none;">
+        <i class="fas fa-calendar-alt"></i> Escolha o mês
+    </button>
+    <ul id="meses">
+        <li onclick="selecionar('mes', 'Dezembro')">Dezembro</li>
+        <li onclick="selecionar('mes', 'Janeiro')">Janeiro</li>
+    </ul>
+
+    <button id="botaoDia" onclick="toggleList('dias')" style="display:none;">
+        <i class="fas fa-calendar-day"></i> Escolha o dia
+    </button>
+    <ul id="dias">
+        <li onclick="selecionar('dia', '31')">31</li>
+        <li onclick="selecionar('dia', '15')">15</li>
+    </ul>
+
+    <button id="buscar" onclick="buscarViagem()" style="display:none;">
+        <i class="fas fa-search"></i> Buscar Agora
+    </button>
+
+    <script>
+        let viagem = {
+            partida: '',
+            destino: '',
+            mes: '',
+            dia: ''
+        };
+
+        const meses = {
+            'Janeiro': 0,
+            'Fevereiro': 1,
+            'Março': 2,
+            'Abril': 3,
+            'Maio': 4,
+            'Junho': 5,
+            'Julho': 6,
+            'Agosto': 7,
+            'Setembro': 8,
+            'Outubro': 9,
+            'Novembro': 10,
+            'Dezembro': 11
+        };
+
+        function toggleList(id) {
+            const lists = document.querySelectorAll('ul');
+            lists.forEach(list => {
+                if (list.id !== id) {
+                    list.style.display = 'none';
+                }
+            });
+            const list = document.getElementById(id);
+            list.style.display = list.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function selecionar(tipo, valor) {
+            viagem[tipo] = valor;
+            const botao = document.getElementById(`botao${capitalize(tipo)}`);
+            
+            if (botao) {
+                botao.innerHTML = valor;
+            }
+            
+            const lista = document.getElementById(
+                tipo === 'partida' ? 'ondeEsta' : 
+                tipo === 'destino' ? 'ondeVai' : 
+                tipo + 's'
+            );
+            if (lista) {
+                lista.style.display = 'none';
+            }
+
+            if (tipo === 'partida') {
+                document.getElementById('botaoDestino').style.display = 'block';
+            }
+            if (tipo === 'destino') {
+                document.getElementById('botaoMes').style.display = 'block';
+            }
+            if (tipo === 'mes') {
+                document.getElementById('botaoDia').style.display = 'block';
+                document.getElementById('meses').style.display = 'none';  // Esconde a lista de meses
+            }
+            if (tipo === 'dia') {
+                document.getElementById('buscar').style.display = 'block';
+                document.getElementById('dias').style.display = 'none';  // Esconde a lista de dias
+            }
+        }
+
+        function buscarViagem() {
+            // Converte o nome do mês para número
+            const mesNumero = meses[viagem.mes];
+            const dataSelecionada = new Date(`${mesNumero + 1} ${viagem.dia}, 2025`);
+            
+            const diasDaSemana = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+            const diaDaSemana = diasDaSemana[dataSelecionada.getDay()];
+
+            const pasta = `${viagem.partida}/${viagem.destino}/${diaDaSemana}/${diaDaSemana}.html`;
+            window.location.href = pasta;
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    </script>
+</body>
+</html>
