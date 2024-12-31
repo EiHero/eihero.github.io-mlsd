@@ -71,7 +71,7 @@
         <li onclick="selecionar('partida', 'Óbidos')">Óbidos</li>
         <li onclick="selecionar('partida', 'Oriximiná')">Oriximiná</li>
         <li onclick="selecionar('partida', 'Gurupá')">Gurupá</li>
-		<li onclick="selecionar('partida', 'Belterra')">Belterra</li>
+        <li onclick="selecionar('partida', 'Belterra')">Belterra</li>
     </ul>
 
     <button id="botaoDestino" onclick="toggleList('ondeVai')" style="display:none;">
@@ -86,7 +86,7 @@
         <li onclick="selecionar('destino', 'Óbidos')">Óbidos</li>
         <li onclick="selecionar('destino', 'Oriximiná')">Oriximiná</li>
         <li onclick="selecionar('destino', 'Gurupá')">Gurupá</li>
-		<li onclick="selecionar('partida', 'Belterra')">Belterra</li>
+        <li onclick="selecionar('partida', 'Belterra')">Belterra</li>
     </ul>
 
     <button id="botaoMes" onclick="toggleList('meses')" style="display:none;">
@@ -104,7 +104,7 @@
         <li onclick="selecionar('mes', 'Setembro')">Setembro</li>
         <li onclick="selecionar('mes', 'Outubro')">Outubro</li>
         <li onclick="selecionar('mes', 'Novembro')">Novembro</li>
-		<li onclick="selecionar('mes', 'Dezembro')">Dezembro</li>
+        <li onclick="selecionar('mes', 'Dezembro')">Dezembro</li>
     </ul>
 
     <button id="botaoDia" onclick="toggleList('dias')" style="display:none;">
@@ -119,7 +119,7 @@
     </button>
 
     <script>
-        let viagem = {
+        let viagem = JSON.parse(localStorage.getItem('viagem')) || {
             partida: '',
             destino: '',
             mes: '',
@@ -156,6 +156,11 @@
             'Dezembro': 31
         };
 
+        // Função para salvar os dados no localStorage
+        function salvarViagem() {
+            localStorage.setItem('viagem', JSON.stringify(viagem));
+        }
+
         function toggleList(id) {
             const lists = document.querySelectorAll('ul');
             lists.forEach(list => {
@@ -169,8 +174,9 @@
 
         function selecionar(tipo, valor) {
             viagem[tipo] = valor;
+            salvarViagem(); // Salva no localStorage após cada seleção
+
             const botao = document.getElementById(`botao${capitalize(tipo)}`);
-            
             if (botao) {
                 botao.innerHTML = valor;
             }
@@ -230,6 +236,14 @@
         function capitalize(str) {
             return str.charAt(0).toUpperCase() + str.slice(1);
         }
+
+        // Carregar os dados já selecionados ao carregar a página
+        window.onload = () => {
+            if (viagem.partida) document.getElementById('botaoPartida').innerHTML = viagem.partida;
+            if (viagem.destino) document.getElementById('botaoDestino').style.display = 'block';
+            if (viagem.mes) document.getElementById('botaoMes').style.display = 'block';
+            if (viagem.dia) document.getElementById('buscar').style.display = 'block';
+        };
     </script>
 </body>
 </html>
