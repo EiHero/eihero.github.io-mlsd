@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galeria de Profissionais</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <style>
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #000;
-    color: #FFD700; /* Dourado elegante */
+    color: #FFD700; /* Dourado elegante por padrão */
     margin: 0;
     padding: 0;
     display: flex;
@@ -19,7 +20,7 @@
 
   header {
     background-color: #1c1c1c;
-    color: #FFD700; /* Dourado elegante */
+    color: #FFD700;
     text-align: center;
     padding: 30px 10px;
     font-size: 2em;
@@ -71,7 +72,7 @@
 
   .dropbtn {
     background-color: #3a3a3a;
-    color: #FFD700; /* Dourado elegante */
+    color: #FFD700;
     padding: 14px 24px;
     font-size: 18px;
     border: none;
@@ -98,7 +99,7 @@
   }
 
   .dropdown-content span {
-    color: #FFD700; /* Dourado elegante */
+    color: #FFD700;
     padding: 15px 20px;
     display: block;
     transition: background-color 0.3s;
@@ -118,9 +119,10 @@
     font-size: 28px;
     cursor: pointer;
     z-index: 10;
-    color: #FFD700; /* Dourado elegante */
+    color: #FFD700;
   }
 
+  /* Modo Claro */
   .light-mode {
     background-color: #fff;
     color: #000;
@@ -128,10 +130,20 @@
 
   .light-mode header {
     background-color: #f1f1f1;
+    color: #000;
   }
 
   .light-mode .dropbtn {
     background-color: #e0e0e0;
+    color: #000;
+  }
+
+  .light-mode .dropdown-content {
+    background-color: #000; /* Fundo preto no modo claro */
+  }
+
+  .light-mode .dropdown-content span {
+    color: #fff;  /* Letras brancas no modo claro */
   }
 
   .light-mode .photo {
@@ -145,6 +157,7 @@
 <header>Galeria de Profissionais</header>
 
 <div style="display: flex; align-items: center;">
+  <!-- Botão de categoria -->
   <div class="dropdown">
     <button onclick="toggleDropdown()" class="dropbtn">Escolher Categoria ▼</button>
     <div id="myDropdown" class="dropdown-content">
@@ -153,7 +166,8 @@
       <span onclick="filterCategory('outros')">Outras Categorias</span>
     </div>
   </div>
-  
+
+  <!-- Botão de modo escuro/claro -->
   <button onclick="toggleDarkMode()" class="dark-mode-toggle">🌙</button>
 </div>
 
@@ -189,9 +203,9 @@ function toggleDarkMode() {
 
   body.classList.toggle('light-mode');
   if (body.classList.contains('light-mode')) {
-    button.textContent = '🌙'; // Modo claro
+    button.textContent = '🌙';
   } else {
-    button.textContent = '☀️'; // Modo escuro
+    button.textContent = '☀️';
   }
 }
 
