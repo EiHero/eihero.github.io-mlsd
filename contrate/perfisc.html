@@ -30,16 +30,10 @@
 
   .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
     padding: 20px;
-    max-width: 600px;
-  }
-
-  @media (max-width: 600px) {
-    .gallery {
-      grid-template-columns: 1fr;
-    }
+    max-width: 1200px;
   }
 
   .photo {
@@ -49,6 +43,8 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     background-color: #1e1e1e;
+    max-width: 300px;
+    margin: auto;
   }
 
   .photo:hover {
@@ -58,8 +54,7 @@
 
   .photo img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
 
@@ -163,7 +158,6 @@
       <span onclick="filterCategory('outros')">Outras Categorias</span>
     </div>
   </div>
-
   <button onclick="toggleDarkMode()" class="dark-mode-toggle">🌙</button>
 </div>
 
@@ -182,6 +176,7 @@ function toggleDropdown() {
 }
 
 function filterCategory(category) {
+  document.getElementById("myDropdown").classList.remove("show");
   document.querySelectorAll('.photo').forEach(photo => {
     photo.style.display = photo.getAttribute('data-category') === category ? 'block' : 'none';
   });
