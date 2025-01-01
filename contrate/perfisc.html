@@ -30,7 +30,7 @@
 
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
@@ -43,7 +43,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     background-color: #1e1e1e;
-    max-width: 300px;
+    max-width: 150px;
     margin: auto;
   }
 
@@ -142,6 +142,16 @@
   .light-mode .photo {
     background-color: #fff;
     color: #000;
+  }
+
+  @media (max-width: 600px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .photo {
+      max-width: 100%;
+    }
   }
 </style>
 </head>
