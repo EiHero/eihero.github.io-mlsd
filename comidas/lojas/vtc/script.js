@@ -2,25 +2,38 @@ let carrinho = [];
 
 function adicionarAoCarrinho(produto) {
     carrinho.push(produto);
-    alert(`${produto} adicionado ao carrinho!`);
+    atualizarCarrinho();
 }
 
-document.getElementById('finalizarCompra').addEventListener('click', () => {
-    if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-    }
+function atualizarCarrinho() {
+    const carrinhoButton = document.getElementById("quantidadeCarrinho");
+    carrinhoButton.textContent = carrinho.length;
 
-    let mensagemPedido = encodeURIComponent("Olá, gostaria de finalizar meu pedido com os seguintes itens: " + carrinho.join(", ") + ". Aguardo a confirmação e as instruções de pagamento. Obrigado!");
-    
-    let urlWhatsApp = `https://api.whatsapp.com/send?phone=+5593984111006&text=${mensagemPedido}`;
+    const listaCarrinho = document.getElementById("listaCarrinho");
+    listaCarrinho.innerHTML = "";
 
-    // Primeiro mostra a mensagem de alerta
-    alert('Pedido finalizado! Aguarde o contato da Lanchonete do VTC.');
+    carrinho.forEach((produto, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${produto} <button onclick="removerDoCarrinho(${index})">Remover</button>`;
+        listaCarrinho.appendChild(li);
+    });
+}
 
-    // Depois redireciona o usuário para o WhatsApp
-    window.open(urlWhatsApp);
+function removerDoCarrinho(index) {
+    carrinho.splice(index, 1);
+    atualizarCarrinho();
+}
 
-    // Limpa o carrinho após o envio
-    carrinho = [];
+function finalizarCompra() {
+    const itensCarrinho = carrinho.join(", ");
+    const whatsappLink = `https://wa.me/5593984111006?text=Eu%20gostaria%20de%20finalizar%20a%20compra%20dos%20seguintes%20itens:%20${itensCarrinho}`;
+    window.open(whatsappLink, "_blank");
+}
+
+document.getElementById("carrinhoButton").addEventListener("click", function () {
+    document.getElementById("carrinhoModal").style.display = "flex";
+});
+
+document.getElementById("fecharCarrinho").addEventListener("click", function () {
+    document.getElementById("carrinhoModal").style.display = "none";
 });
