@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   header {
@@ -119,6 +120,25 @@
     right: 15px;
     font-size: 28px;
     cursor: pointer;
+    z-index: 10;
+  }
+
+  .light-mode {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .light-mode header {
+    background-color: #f1f1f1;
+  }
+
+  .light-mode .dropbtn {
+    background-color: #e0e0e0;
+  }
+
+  .light-mode .photo {
+    background-color: #fff;
+    color: #000;
   }
 </style>
 </head>
@@ -163,6 +183,18 @@ function showProfile(name) {
   window.location.href = name + '/c.html';
 }
 
+function toggleDarkMode() {
+  var body = document.body;
+  var button = document.querySelector('.dark-mode-toggle');
+
+  body.classList.toggle('light-mode');
+  if (body.classList.contains('light-mode')) {
+    button.textContent = '🌙'; // Modo claro
+  } else {
+    button.textContent = '☀️'; // Modo escuro
+  }
+}
+
 window.onload = function() {
   var gallery = document.getElementById('gallery');
   photos.forEach(photo => {
@@ -172,7 +204,6 @@ window.onload = function() {
     photoDiv.innerHTML = '<img src="' + photo.src + '" onclick="showProfile(\'' + photo.name + '\')">';
     gallery.appendChild(photoDiv);
   });
-  document.body.classList.add('dark-mode');
 };
 </script>
 
