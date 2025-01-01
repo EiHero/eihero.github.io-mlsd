@@ -8,7 +8,7 @@
   body {
     font-family: 'Poppins', sans-serif;
     background-color: #000;
-    color: white;
+    color: #FFD700; /* Dourado elegante */
     margin: 0;
     padding: 0;
     display: flex;
@@ -19,7 +19,7 @@
 
   header {
     background-color: #1c1c1c;
-    color: white;
+    color: #FFD700; /* Dourado elegante */
     text-align: center;
     padding: 30px 10px;
     font-size: 2em;
@@ -66,12 +66,12 @@
   .dropdown {
     position: relative;
     display: inline-block;
-    margin: 20px 0;
+    margin: 20px 10px 20px 0;
   }
 
   .dropbtn {
     background-color: #3a3a3a;
-    color: white;
+    color: #FFD700; /* Dourado elegante */
     padding: 14px 24px;
     font-size: 18px;
     border: none;
@@ -98,7 +98,7 @@
   }
 
   .dropdown-content span {
-    color: white;
+    color: #FFD700; /* Dourado elegante */
     padding: 15px 20px;
     display: block;
     transition: background-color 0.3s;
@@ -115,12 +115,10 @@
   .dark-mode-toggle {
     background: none;
     border: none;
-    position: fixed;
-    top: 15px;
-    right: 15px;
     font-size: 28px;
     cursor: pointer;
     z-index: 10;
+    color: #FFD700; /* Dourado elegante */
   }
 
   .light-mode {
@@ -146,18 +144,20 @@
 
 <header>Galeria de Profissionais</header>
 
-<div class="dropdown">
-  <button onclick="toggleDropdown()" class="dropbtn">Escolher Categoria ▼</button>
-  <div id="myDropdown" class="dropdown-content">
-    <span onclick="filterCategory('auxiliares')">Auxiliares Administrativos</span>
-    <span onclick="filterCategory('limpadores')">Limpadores de Quintal</span>
-    <span onclick="filterCategory('outros')">Outras Categorias</span>
+<div style="display: flex; align-items: center;">
+  <div class="dropdown">
+    <button onclick="toggleDropdown()" class="dropbtn">Escolher Categoria ▼</button>
+    <div id="myDropdown" class="dropdown-content">
+      <span onclick="filterCategory('auxiliares')">Auxiliares Administrativos</span>
+      <span onclick="filterCategory('limpadores')">Limpadores de Quintal</span>
+      <span onclick="filterCategory('outros')">Outras Categorias</span>
+    </div>
   </div>
+  
+  <button onclick="toggleDarkMode()" class="dark-mode-toggle">🌙</button>
 </div>
 
 <div id="gallery" class="gallery"></div>
-
-<button onclick="toggleDarkMode()" class="dark-mode-toggle">🌙</button>
 
 <script>
 var photos = [
