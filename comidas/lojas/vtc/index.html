@@ -9,7 +9,11 @@
 <body>
     <header>
         <h1>Lanchonete do VTC</h1>
+        <div class="cart">
+            <button id="carrinhoButton">Carrinho (<span id="quantidadeCarrinho">0</span>)</button>
+        </div>
     </header>
+
     <main>
         <div class="product">
             <img src="hamburguer.jpg" alt="Hambúrguer delicioso">
@@ -30,9 +34,20 @@
             <button onclick="adicionarAoCarrinho('Refrigerante')">Adicionar ao Carrinho</button>
         </div>
     </main>
+
+    <div id="carrinhoModal" class="carrinhoModal">
+        <div class="carrinhoContent">
+            <h2>Carrinho de Compras</h2>
+            <ul id="listaCarrinho"></ul>
+            <button id="finalizarCompra" onclick="finalizarCompra()">Finalizar Compra</button>
+            <button id="fecharCarrinho">Fechar</button>
+        </div>
+    </div>
+
     <footer>
-        <button id="finalizarCompra">Finalizar Compra</button>
+        <button id="finalizarCompraMobile" onclick="finalizarCompra()">Finalizar Compra</button>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
