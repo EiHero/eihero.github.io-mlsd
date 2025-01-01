@@ -9,7 +9,7 @@
   body {
     font-family: 'Montserrat', sans-serif;
     background-color: #000;
-    color: #FFD700; /* Dourado elegante por padrão */
+    color: #FFD700;
     margin: 0;
     padding: 0;
     display: flex;
@@ -29,28 +29,20 @@
   }
 
   .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
     padding: 20px;
     max-width: 1200px;
   }
 
   .photo {
-    margin: 15px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    width: calc(50% - 30px);
     background-color: #1e1e1e;
-  }
-
-  @media (max-width: 768px) {
-    .photo {
-      width: calc(100% - 30px);
-    }
   }
 
   .photo:hover {
@@ -122,7 +114,6 @@
     color: #FFD700;
   }
 
-  /* Modo Claro */
   .light-mode {
     background-color: #fff;
     color: #000;
@@ -139,11 +130,11 @@
   }
 
   .light-mode .dropdown-content {
-    background-color: #000; /* Fundo preto no modo claro */
+    background-color: #000;
   }
 
   .light-mode .dropdown-content span {
-    color: #fff;  /* Letras brancas no modo claro */
+    color: #fff;
   }
 
   .light-mode .photo {
@@ -157,7 +148,6 @@
 <header>Galeria de Profissionais</header>
 
 <div style="display: flex; align-items: center;">
-  <!-- Botão de categoria -->
   <div class="dropdown">
     <button onclick="toggleDropdown()" class="dropbtn">Escolher Categoria ▼</button>
     <div id="myDropdown" class="dropdown-content">
@@ -167,7 +157,6 @@
     </div>
   </div>
 
-  <!-- Botão de modo escuro/claro -->
   <button onclick="toggleDarkMode()" class="dark-mode-toggle">🌙</button>
 </div>
 
@@ -186,8 +175,6 @@ function toggleDropdown() {
 }
 
 function filterCategory(category) {
-  var dropdown = document.getElementById("myDropdown");
-  dropdown.classList.remove("show");
   document.querySelectorAll('.photo').forEach(photo => {
     photo.style.display = photo.getAttribute('data-category') === category ? 'block' : 'none';
   });
@@ -198,15 +185,7 @@ function showProfile(name) {
 }
 
 function toggleDarkMode() {
-  var body = document.body;
-  var button = document.querySelector('.dark-mode-toggle');
-
-  body.classList.toggle('light-mode');
-  if (body.classList.contains('light-mode')) {
-    button.textContent = '🌙';
-  } else {
-    button.textContent = '☀️';
-  }
+  document.body.classList.toggle('light-mode');
 }
 
 window.onload = function() {
