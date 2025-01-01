@@ -13,12 +13,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  /* Para permitir que o conteúdo se ajuste */
 }
 
 h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Tamanho de fonte ajustado */
 }
 
 .cart button {
@@ -34,13 +34,55 @@ h1 {
     background-color: #c0392b;
 }
 
+/* Produtos */
+main {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se ajustem na tela */
+    justify-content: space-around;
+    margin: 20px 0;
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.product {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    width: 30%;
+    transition: transform 0.2s;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.product button {
+    background-color: #2ecc71;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.product button:hover {
+    background-color: #27ae60;
+}
+
 /* Carrinho */
 .carrinhoModal {
     display: none;
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -81,48 +123,6 @@ h1 {
     background-color: #2980b9;
 }
 
-/* Fixar o carrinho na parte superior da tela */
-#carrinho {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #3498db;
-    color: white;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Mantém o carrinho acima de outros elementos */
-    transition: background-color 0.3s ease;
-}
-
-#carrinho:hover {
-    background-color: #2980b9;
-}
-
-/* Fixar o botão de finalizar compra na parte inferior */
-#finalizarCompra {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #e67e22;
-    color: white;
-    font-size: 1.2rem;
-    padding: 15px 30px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-}
-
-#finalizarCompra:hover {
-    background-color: #d35400;
-}
-
 /* Media Queries para Responsividade */
 
 /* Para telas pequenas como celulares */
@@ -146,23 +146,11 @@ h1 {
     }
 
     .product {
-        width: 80%;
+        width: 80%; /* Reduz a largura dos produtos */
     }
 
     .product img {
-        height: auto;
-    }
-
-    /* Ajustar o botão de finalizar compra para telas pequenas */
-    #finalizarCompra {
-        font-size: 1rem;
-        padding: 12px 25px;
-    }
-
-    /* Ajustar o carrinho para telas pequenas */
-    #carrinho {
-        font-size: 1rem;
-        padding: 8px 18px;
+        height: auto; /* Garante que a imagem não ultrapasse o limite do card */
     }
 }
 
@@ -177,22 +165,30 @@ h1 {
     }
 
     .product {
-        width: 90%;
+        width: 90%; /* Ocupa a maior parte da tela */
     }
 
     .product button {
         padding: 8px;
     }
+}
 
-    /* Ajustar o botão de finalizar compra para telas muito pequenas */
-    #finalizarCompra {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-    }
+/* Fixar o botão do carrinho na parte superior da tela */
+#carrinhoButton {
+    position: fixed;
+    top: 10px; /* Ajuste a distância do topo conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e74c3c;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000; /* Garantir que ele fique acima de outros elementos */
+    transition: background-color 0.3s ease;
+}
 
-    /* Ajustar o carrinho para telas muito pequenas */
-    #carrinho {
-        font-size: 0.9rem;
-        padding: 6px 15px;
-    }
+/* Efeito hover */
+#carrinhoButton:hover {
+    background-color: #c0392b;
 }
