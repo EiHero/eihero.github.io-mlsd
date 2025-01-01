@@ -34,49 +34,6 @@ h1 {
     background-color: #c0392b;
 }
 
-/* Produtos */
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 20px 0;
-    gap: 20px;
-    padding: 0 10px;
-}
-
-.product {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    width: 30%;
-    transition: transform 0.2s;
-}
-
-.product:hover {
-    transform: scale(1.05);
-}
-
-.product img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.product button {
-    background-color: #2ecc71;
-    border: none;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-.product button:hover {
-    background-color: #27ae60;
-}
-
 /* Carrinho */
 .carrinhoModal {
     display: none;
@@ -137,7 +94,7 @@ main {
     border-radius: 5px;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 1000; /* Mantém o carrinho acima de outros elementos */
     transition: background-color 0.3s ease;
 }
 
