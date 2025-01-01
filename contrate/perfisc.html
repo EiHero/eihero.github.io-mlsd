@@ -168,7 +168,7 @@
       <span onclick="filterCategory('outros')">Outras Categorias</span>
     </div>
   </div>
-  <button onclick="toggleDarkMode()" class="dark-mode-toggle">🌙</button>
+  <button onclick="toggleDarkMode()" class="dark-mode-toggle">☀️</button>
 </div>
 
 <div id="gallery" class="gallery"></div>
@@ -197,7 +197,15 @@ function showProfile(name) {
 }
 
 function toggleDarkMode() {
-  document.body.classList.toggle('light-mode');
+  var body = document.body;
+  var button = document.querySelector('.dark-mode-toggle');
+
+  body.classList.toggle('light-mode');
+  if (body.classList.contains('light-mode')) {
+    button.textContent = '🌙';
+  } else {
+    button.textContent = '☀️';
+  }
 }
 
 window.onload = function() {
