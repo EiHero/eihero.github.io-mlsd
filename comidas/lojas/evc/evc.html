@@ -8,11 +8,13 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #00c6ff, #0072ff);
+            background: url('sua-imagem-de-fundo.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             text-align: center;
             margin: 0;
             padding: 0;
+            padding-top: 230px; /* Adiciona espaço no topo para os botões */
         }
         h1 {
             margin: 20px 0;
@@ -41,7 +43,7 @@
             margin: 10px auto;
             max-width: 300px;
             display: none;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #0056c1; /* Fundo sólido */
             border-radius: 10px;
             max-height: 250px;
             overflow-y: auto;
@@ -58,7 +60,7 @@
     </style>
 </head>
 <body>
-    <h1>Blog do Miranda vendas de passagens</h1>
+    <h1></h1>
     <button id="botaoPartida" onclick="toggleList('ondeEsta')">
         <i class="fas fa-anchor"></i> Escolha seu porto de partida
     </button>
