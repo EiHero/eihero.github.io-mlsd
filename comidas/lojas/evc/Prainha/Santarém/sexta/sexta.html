@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passagens de Navios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f8ff;
+        }
+        header {
+            background: #006994;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navio-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .navio-card {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .navio-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .navio-card h3 {
+            margin: 10px 0;
+            color: #006994;
+        }
+        .navio-card p {
+            margin: 5px 0;
+            color: #333;
+        }
+        .navio-card button {
+            background: #006994;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .navio-card button:hover {
+            background: #004f73;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        .modal-content button {
+            background-color: #006994;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Passagens de Navios</h1>
+        <p>Encontre o melhor navio para sua viagem</p>
+    </header>
+    <div class="navio-container">
+        <div class="navio-card">
+            <img src="navio-bruno.jpg" alt="Navio Bruno">
+            <h3>Navio bruno</h3>
+            <p>Preço: R$ 90,00</p>
+            <p>Embarque: 19:00</p>
+            <p>Chegada: 08:30</p>
+            <button onclick="comprarPassagem('bruno', 350)">Comprar Passagem</button>
+        </div>
+        <div class="navio-card">
+            <img src="exemplo.jpg" alt="Navio Estrela do Mar">
+            <h3>Navio Estrela do Mar</h3>
+            <p>Preço: R$ 450,00</p>
+            <p>Embarque: 12:00</p>
+            <p>Chegada: 18:30</p>
+            <button onclick="comprarPassagem('Estrela do Mar', 450)">Comprar Passagem</button>
+        </div>
+        <div class="navio-card">
+            <img src="exemplo.jpg" alt="Navio Oceano Azul">
+            <h3>Navio Oceano Azul</h3>
+            <p>Preço: R$ 500,00</p>
+            <p>Embarque: 09:00</p>
+            <p>Chegada: 15:00</p>
+            <button onclick="comprarPassagem('Oceano Azul', 500)">Comprar Passagem</button>
+        </div>
+    </div>
+
+    <!-- Modal para escolher quantidade de passagens -->
+    <div id="modalQuantidade" class="modal">
+        <div class="modal-content">
+            <h3>Quantas passagens deseja comprar?</h3>
+            <input type="number" id="quantidade" min="0" max="10" value="0">
+            <button onclick="confirmarQuantidade()">Confirmar</button>
+        </div>
+    </div>
+
+    <!-- Modal para escolher forma de pagamento -->
+    <div id="modalPagamento" class="modal">
+        <div class="modal-content">
+            <h3>Escolha a forma de pagamento</h3>
+            <button onclick="confirmarPagamento('Pix')">Pix</button>
+            <button onclick="confirmarPagamento('Espécie')">Espécie</button>
+        </div>
+    </div>
+
+    <script>
+        let navioEscolhido = '';
+        let precoNavio = 0;
+        let quantidade = 0;
+
+        function comprarPassagem(navio, preco) {
+            navioEscolhido = navio;
+            precoNavio = preco;
+            // Exibe o modal para escolher a quantidade de passagens
+            document.getElementById('modalQuantidade').style.display = 'flex';
+        }
+
+        function confirmarQuantidade() {
+            quantidade = parseInt(document.getElementById('quantidade').value);
+            if (quantidade > 0) {
+                // Fecha o modal de quantidade e exibe o de pagamento
+                document.getElementById('modalQuantidade').style.display = 'none';
+                document.getElementById('modalPagamento').style.display = 'flex';
+            } else {
+                alert('Por favor, insira uma quantidade válida de passagens.');
+            }
+        }
+
+        function confirmarPagamento(formato) {
+            let mensagem = `Sua solicitação de compra de passagens, clique em enviar para prosseguir!\n\n`;
+
+            mensagem += `Navio: ${navioEscolhido}\n`;
+            mensagem += `Passagens: ${quantidade}\n`;
+
+            // Recupera as informações de viagem
+            const viagem = JSON.parse(localStorage.getItem('viagem')) || {
+                partida: 'Não selecionado',
+                destino: 'Não selecionado',
+                mes: 'Não selecionado',
+                dia: 'Não selecionado'
+            };
+
+            mensagem += `Embarque: ${viagem.partida}, dia ${viagem.dia}/${viagem.mes}\n`;
+            mensagem += `Desembarque: ${viagem.destino}\n`;
+            mensagem += `Forma de Pagamento: ${formato}\n`;
+
+            if (formato === 'Espécie') {
+                mensagem += 'Você receberá o troco em Pix.\n';
+            }
+
+            // Abre o WhatsApp com a mensagem
+            window.open(`https://wa.me/93984111006?text=${encodeURIComponent(mensagem)}`);
+
+            // Fecha o modal de pagamento
+            document.getElementById('modalPagamento').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
